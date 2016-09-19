@@ -799,8 +799,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $order_sum = number_format($order_sum, 2, '.', '');
 		
 		# Редактирование данных заказа - оригинальная настройка
-			if (!$mOrders->EditOrder($id_order, $_POST['order_lastname'], $_POST['order_name'], $_POST['order_fathername'], $_POST['order_email'], $_POST['order_phone'], $_POST['order_zip'], $_POST['order_country'], $_POST['order_region'], $_POST['order_city'], stripslashes($_POST['order_address']), stripslashes($_POST['order_comment']), $_POST['order_payment'], null, $_POST['order_delivery'], $_POST['order_delivery_cost'], $_POST['order_date'], $order_sum, $_POST['order_status'], $_POST['order_admin_comment'], $order_payment_ym, $_POST['order_manager']))
-				die('<p>Данные не были сохранены. Проверьте корректность заполнения полей.</p>');
+        if (!$mOrders->EditOrder($id_order,
+            $_POST['order_lastname'],
+            $_POST['order_name'],
+            $_POST['order_fathername'],
+            $_POST['order_email'],
+            $_POST['order_phone'],
+            $_POST['order_zip'],
+            $_POST['order_country'],
+            $_POST['order_region'],
+            $_POST['order_city'],
+            stripslashes($_POST['order_address']),
+            stripslashes($_POST['order_comment']),
+            $_POST['order_payment'],
+            '', // todo
+            $_POST['order_delivery'],
+            $_POST['order_delivery_cost'],
+            $_POST['order_date'],
+            $order_sum,
+            $_POST['order_status'],
+            $_POST['order_admin_comment'],
+            $order_payment_ym,
+            $_POST['order_manager'],
+            (float) $_POST['manager_bonus'])
+        ) {
+            die('<p>Данные не были сохранены. Проверьте корректность заполнения полей.</p>');
+        }
 
 		# Редактирование тегов
 		if (isset($_POST['tags']) && is_array($_POST['tags']))

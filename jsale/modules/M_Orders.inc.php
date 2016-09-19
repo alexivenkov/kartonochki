@@ -220,7 +220,7 @@ class M_Orders
 	}
 
 	# Редактирование заказа
-	public function EditOrder($id_custom, $lastName = null, $name, $fatherName = null, $email, $phone = null, $zip = null, $country = null, $region = null, $city = null, $address = null, $comment = null, $payment, $juridical = null, $delivery = null, $delivery_cost = null, $date = null, $order_sum, $status, $admin_comment = null, $payment_ym = null, $id_manager = null)
+	public function EditOrder($id_custom, $lastName = null, $name, $fatherName = null, $email, $phone = null, $zip = null, $country = null, $region = null, $city = null, $address = null, $comment = null, $payment, $juridical = null, $delivery = null, $delivery_cost = null, $date = null, $order_sum, $status, $admin_comment = null, $payment_ym = null, $id_manager = null, $manager_bonus = null)
 	{
 		# Проверка наличия прав
 	    if (!$this->admin->CheckLogin())
@@ -256,6 +256,7 @@ class M_Orders
 		$obj['admin_comment'] = $admin_comment;
 		$obj['payment_ym'] = $payment_ym;
 		$obj['id_manager'] = $id_manager;
+        $obj['manager_bonus'] = $manager_bonus;
 
 		$t = "id_custom = '%d'";
 		$where = sprintf($t, $id_custom);
