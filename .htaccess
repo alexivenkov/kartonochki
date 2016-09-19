@@ -1,0 +1,20 @@
+Options -Indexes
+
+<Files "*.inc.php">
+order allow,deny
+deny from all
+</Files>
+
+#<Files "*.tpl.php">
+#order allow,deny
+#deny from all
+#</Files>
+
+ErrorDocument 404 /
+ErrorDocument 403 /
+ErrorDocument 500 /
+ErrorDocument 505 /
+
+RemoveHandler .html .htm
+AddType application/x-httpd-php .php .htm .html
+

@@ -1,0 +1,8 @@
+this file should exist for request logging[2015-09-11 17:42:45] request: https://sp-money.yandex.ru/oauth/token; 
+[2015-09-11 17:42:45] response: https://sp-money.yandex.ru/oauth/token; http_code = 200; curl_errno = 0; curl_error = 
+[2015-09-11 17:42:45] request: https://money.yandex.ru/api/account-info; token = *D3E1; 
+[2015-09-11 17:42:46] response: https://money.yandex.ru/api/account-info; token = *D3E1; http_code = 200; curl_errno = 0; curl_error = 
+[2015-09-11 17:42:46] request: https://money.yandex.ru/api/operation-history; token = *D3E1; 
+[2015-09-11 17:42:46] response: https://money.yandex.ru/api/operation-history; token = *D3E1; http_code = 200; curl_errno = 0; curl_error = 
+[2015-09-11 17:42:46] request: https://money.yandex.ru/api/operation-details; token = *D3E1; 
+[2015-09-11 17:42:46] response: https://money.yandex.ru/api/operation-details; token = *D3E1; http_code = 200; curl_errno = 0; curl_error = 

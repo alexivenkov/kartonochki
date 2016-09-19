@@ -1,0 +1,11 @@
+Options -Indexes
+
+<Files "*.inc.php">
+order allow,deny
+deny from all
+</Files>
+
+#<Files "*.tpl.php">
+#order allow,deny
+#deny from all
+#</Files>

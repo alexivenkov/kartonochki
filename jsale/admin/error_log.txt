@@ -1,0 +1,40 @@
+[28-Aug-2016 23:59:03 Asia/Yekaterinburg] PHP Notice:  Undefined variable: products in /home/k/kartonocru/test/public_html/jsale/admin/managers.php on line 421
+[29-Aug-2016 00:01:46 Asia/Yekaterinburg] PHP Notice:  Use of undefined constant order - assumed 'order' in /home/k/kartonocru/test/public_html/jsale/admin/managers.php on line 373
+[29-Aug-2016 00:01:46 Asia/Yekaterinburg] PHP Warning:  Illegal string offset 'status' in /home/k/kartonocru/test/public_html/jsale/admin/managers.php on line 373
+[29-Aug-2016 00:01:46 Asia/Yekaterinburg] PHP Notice:  Use of undefined constant order - assumed 'order' in /home/k/kartonocru/test/public_html/jsale/admin/managers.php on line 373
+[29-Aug-2016 00:01:46 Asia/Yekaterinburg] PHP Warning:  Illegal string offset 'status' in /home/k/kartonocru/test/public_html/jsale/admin/managers.php on line 373
+[01-Sep-2016 12:30:25 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_lastname in W:\domains\localhost\dev.kartonochki.ru\jsale\admin\orders.php on line 771
+[01-Sep-2016 12:30:25 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_fathername in W:\domains\localhost\dev.kartonochki.ru\jsale\admin\orders.php on line 771
+[01-Sep-2016 12:30:25 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_country in W:\domains\localhost\dev.kartonochki.ru\jsale\admin\orders.php on line 771
+[01-Sep-2016 12:30:25 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_region in W:\domains\localhost\dev.kartonochki.ru\jsale\admin\orders.php on line 771
+[01-Sep-2016 12:30:29 Asia/Yekaterinburg] PHP Warning:  Cannot modify header information - headers already sent by (output started at W:\domains\localhost\dev.kartonochki.ru\jsale\admin\orders.php:771) in W:\domains\localhost\dev.kartonochki.ru\jsale\admin\orders.php on line 1013
+[01-Sep-2016 17:26:32 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_lastname in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[01-Sep-2016 17:26:32 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_fathername in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[01-Sep-2016 23:58:53 Asia/Yekaterinburg] PHP Notice:  Undefined index: domain in /home/k/kartonocru/test/public_html/jsale/design/adminOrderEdit.tpl.php on line 176
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_date in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 610
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined offset: 1 in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 610
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined offset: 2 in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 611
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined offset: 1 in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 611
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined offset: 2 in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 612
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined offset: 1 in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 612
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_lastname in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 623
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_fathername in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 623
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_country in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 623
+[02-Sep-2016 00:16:09 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_region in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 623
+[02-Sep-2016 00:16:52 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_lastname in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 623
+[02-Sep-2016 00:16:52 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_fathername in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 623
+[02-Sep-2016 00:16:52 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_country in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 623
+[02-Sep-2016 00:16:52 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_region in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 623
+[02-Sep-2016 00:32:12 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_lastname in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[02-Sep-2016 00:32:12 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_fathername in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[02-Sep-2016 00:32:16 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_lastname in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[02-Sep-2016 00:32:16 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_fathername in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[03-Sep-2016 10:51:25 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_lastname in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[03-Sep-2016 10:51:25 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_fathername in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[03-Sep-2016 10:51:28 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_lastname in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[03-Sep-2016 10:51:28 Asia/Yekaterinburg] PHP Notice:  Undefined index: call_fathername in /home/k/kartonocru/test/public_html/jsale/admin/calls.php on line 317
+[03-Sep-2016 12:16:53 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_phone in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 873
+[03-Sep-2016 12:22:17 Asia/Yekaterinburg] PHP Notice:  Undefined index: order_phone in /home/k/kartonocru/test/public_html/jsale/admin/orders.php on line 873
+[09-Sep-2016 22:02:42 Asia/Yekaterinburg] PHP Notice:  Undefined offset: 1 in /home/k/kartonocru/test/public_html/jsale/modules/M_DB.inc.php on line 523
+[09-Sep-2016 22:02:42 Asia/Yekaterinburg] PHP Notice:  Undefined offset: 1 in /home/k/kartonocru/test/public_html/jsale/modules/M_DB.inc.php on line 523
+[17-Sep-2016 20:35:02 Asia/Yekaterinburg] PHP Notice:  Undefined variable: order_sum in /home/k/kartonocru/dev/public_html/jsale/modules/C_SMS.inc.php on line 14

@@ -1,0 +1,12 @@
+[06-Sep-2016 09:04:19 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 64
+[06-Sep-2016 09:04:19 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 64
+[06-Sep-2016 09:04:19 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 64
+[06-Sep-2016 09:04:19 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 64
+[06-Sep-2016 09:04:19 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 64
+[06-Sep-2016 09:10:17 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 61
+[06-Sep-2016 09:10:17 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 61
+[06-Sep-2016 09:10:17 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 61
+[06-Sep-2016 09:10:17 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 61
+[06-Sep-2016 09:10:17 Asia/Yekaterinburg] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/k/kartonocru/test/public_html/jsale/design/orderButton.tpl.php on line 61
+[16-Sep-2016 13:51:09 Asia/Yekaterinburg] PHP Warning:  unlink(/home/k/kartonocru/dev/public_html/jsale/modules/../install.inc.php): ��� ������ ����� ��� �������� in /home/k/kartonocru/dev/public_html/jsale/modules/MSQL.inc.php on line 30
+[16-Sep-2016 13:51:09 Asia/Yekaterinburg] PHP Warning:  unlink(/home/k/kartonocru/dev/public_html/jsale/modules/../install.inc.php): ��� ������ ����� ��� �������� in /home/k/kartonocru/dev/public_html/jsale/modules/MSQL.inc.php on line 30

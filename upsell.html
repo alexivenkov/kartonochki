@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title>Демонстрация jsale – удобный скрипт одиночных заказов</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+<div id="wrapper">
+	<header id="header">
+		<a href="" title="На главную страницу"><h2>Демонстрация работы JSale</h2></a>
+	</header><!-- #header-->
+	
+	<section id="middle">
+
+		<div id="container">
+			<article id="content">
+				<h1>JSale – удобный скрипт быстрых заказов</h1>
+				<h4>Пример апсела на отдельной странице</h4>
+				
+				<br><br>
+				
+				<? session_start(); ?>
+				<form action="jsale/upsell.php" method="post">
+					<div>
+						<input type="hidden" name="code[1]" value="install">
+						<input type="hidden" name="price[1]" value="100">
+						<input type="checkbox" name="title[1]" value="Фича 1" id="test1" />
+						<label for="test1">Bluetooth-контроллер</label>
+					</div>
+					<div>
+						<input type="hidden" name="code[2]" value="waranty">
+						<input type="hidden" name="price[2]" value="150">
+						<input type="checkbox" name="title[2]" value="Фича 2" id="test2" />
+						<label for="test2">Подарок 2</label>
+					</div>                                                    
+					<div class="buttons">
+						<input type="hidden" name="id_order" value="<?=$_SESSION['jsale_order']?>">
+						<input type="submit" name="formSubmit" value="Добавить"></input>
+						<a href="result.html">Нет, спасибо</a>
+					</div>
+				</form>
+				
+				<br><br>
+			</article><!-- #content-->
+		</div><!-- #container-->
+
+	</section><!-- #middle-->
+
+	<footer id="footer">
+		<p>2013 @ <a href="http://jsale.biz">jsale.biz</a></p>
+		<p><a href="jsale/admin/">Админка</a> скрипта: demo/demo</p>
+	</footer><!-- #footer -->
+
+</div><!-- #wrapper -->
+</body>
+</html>

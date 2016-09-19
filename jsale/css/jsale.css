@@ -1,0 +1,583 @@
+.jSale, .jSaleFeedback  {
+	/*text-align: center;*/
+	padding-top: 0px;
+}
+
+.jSaleWrapper  .jSale  {
+	padding-top: 0;
+}
+
+.jSaleWrapper {
+    background: inherit;
+    box-sizing: border-box;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin: 0 auto;
+    /*padding-left: 100px;*/
+    /*padding-right: 100px;*/
+    width: 100%;
+}
+
+.jSaleOrder {
+	cursor: pointer;
+}
+
+.jSaleButton {
+  display: inline-block;
+  *display: inline;
+  padding: 20px 25px;
+  margin-bottom: 0;
+  *margin-left: .3em;
+  font-size: 22px;
+  line-height: 18px;
+  *line-height: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 3px #136813;
+  font-family: Proximanova, sans-serif;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid #cccccc;
+  border-bottom: 5px solid #217a21;  
+  *border: 0;
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 30px;
+     -moz-border-radius: 30px;
+          border-radius: 30px;
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+		  
+  background-color: #50b91c;;
+  *background-color: #50b91c;
+  background-image: -ms-linear-gradient(180deg, #5ed821, #47ac15);
+  background-image: -webkit-gradient(linear-gradient(180deg, #5ed821, #47ac15));
+  background-image: -webkit-linear-gradient(180deg, #5ed821, #47ac15);
+  background-image: -o-linear-gradient(180deg, #5ed821, #47ac15);
+  background-image: -moz-linear-gradient(180deg, #5ed821, #47ac15);
+  background-image: linear-gradient(180deg, #5ed821, #47ac15);
+  background-repeat: repeat-x;
+  /*border-color: #0055cc #0055cc #003580;*/
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#0088cc', endColorstr='#0055cc', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.jSaleButton2 {
+    margin-bottom: 10px;
+    float: right;
+    font-family: 'Proximanova Regular', sans-serif;
+    color: #f60;
+    font-size: 15px;
+    text-align: right;
+	text-decoration: underline;
+}
+.jSaleButton3 {
+  display: block;
+  width: 50%;
+  color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 30px auto 51px;
+  font-size: 22px;
+  line-height: 18px;
+  *line-height: 20px;
+  text-align: center;
+  text-shadow: 1px 1px 2px #007997;
+  font-family: Proximanova, sans-serif;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid #cccccc;
+  border-bottom: 5px solid #007997;  
+  *border: 0;
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 30px;
+     -moz-border-radius: 30px;
+          border-radius: 30px;
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+      
+  background-color: #40a7d9;
+  *background-color: #40a7d9;
+  background-image: -ms-linear-gradient(180deg, #4bc5ff, #40a7d9);
+  background-image: -webkit-gradient(linear-gradient(180deg, #4bc5ff, #40a7d9));
+  background-image: -webkit-linear-gradient(270deg, #4bc5ff, #40a7d9);
+  background-image: -o-linear-gradient(180deg, #4bc5ff, #40a7d9);
+  background-image: -moz-linear-gradient(180deg, #4bc5ff, #40a7d9);
+  background-image: linear-gradient(180deg, #4bc5ff, #40a7d9);
+  transition: background-color 500ms ease;
+  background-repeat: repeat-x;
+  /*border-color: #0055cc #0055cc #003580;*/
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#0088cc', endColorstr='#0055cc', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.jSaleButton:hover {
+  text-decoration: none;
+  /* Buttons in IE7 don't get borders, so darken on hover */
+
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+     -moz-transition: background-position 0.1s linear;
+      -ms-transition: background-position 0.1s linear;
+       -o-transition: background-position 0.1s linear;
+          transition: background-position 0.1s linear;
+}
+
+.jSaleButton:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.jSaleButton:active {
+  background-color: #e6e6e6;
+  background-color: #d9d9d9 \9;
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.jSaleButton, .jSaleButton:hover {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.jSaleButton:hover, .jSaleButton:active {
+  background-color: #47ac15;
+  *background-color: #47ac15;
+}
+
+.jSaleButton:active{
+  background-color: #47ac15 \9;
+}
+
+.jSaleButton:disabled {
+  opacity: 0.3;
+}
+
+.jSaleLarge {
+	/* padding: 7px 19px; */
+	/* font-size: 110%; */
+	margin: 15px;
+}
+
+.jSaleForm {
+	padding: 25px;
+	margin: 0;
+	font-family: Proximanova Regular, sans-serif;
+}
+.jSaleFormCall {
+	padding: 45px;
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+.jSaleFormCall {
+	padding: 55px;
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+
+.jSaleForm h6 {
+text-align: center;
+font-size: 110%;
+margin: 0 0 15px;
+font-size: 32px;
+line-height: 125%;
+}
+.jSaleForm h5 {
+text-align: center;
+font-size: 100%;
+margin: 0 0 15px;
+    font-size: 25px;
+}
+
+.jSaleForm p {
+	font-size: 100%;
+}
+
+.jSaleMessage {
+	text-align: center;
+	color: #f00;
+}
+
+.jSaleQty {
+    width: 50px;
+    height: 35px;
+    font-family: 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+}
+
+.jSaleQtyMinus, .jSaleQtyPlus {
+	font-weight: bold;
+	cursor: pointer;
+	height: 35px;
+	width: 35px;
+}
+
+.jSaleQtyMinus:hover, .jSaleQtyPlus:hover {
+	color: #666;
+}
+
+.jSaleCode {
+	width: 110px;
+    height: 40px;
+    font-family: 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    text-decoration: none;
+    color: #000;
+    text-align: left;
+    margin-top: 15px;
+	margin-right: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: inset 2px 2px 0 0 #ccc;
+    border-width: 1px;
+}
+
+.jSaleForm .attention, .jSaleForm .error, .jSaleForm .warning {
+	color: #f00;
+}
+
+.jSaleForm .error {
+	border-color: #f00;
+}
+
+.jSaleForm .warning {
+	display: block;
+	font-size: 13px;
+}
+
+.jSaleForm .t-center {
+	text-align: center;
+}
+
+.jSaleForm .submit {
+	text-align: center;
+}
+
+.simplemodal-container .success {
+	text-align: center;
+	padding: 40px 20px;
+}
+
+.simplemodal-container .success h3 {
+	text-align: center;
+	color: #3caa3c;
+}
+
+.simplemodal-container .success h4 {
+	text-align: center;
+}
+.JSaleWrapper .success h3 {
+	text-align: center;
+	color: #3caa3c;	
+}
+.jSaleForm .success h3 {
+	text-align: center;
+	color: #3caa3c;
+}
+.jSaleForm p, .jSaleForm div.p {
+	margin: 0 0 15px;
+	padding: 0 0px;
+	clear: both;
+}
+
+.jSaleForm div.p {
+	font-size: 80%;
+	height: 16px;
+	vertical-align: top;
+	margin: 0 0 20px;
+}
+
+.jSaleForm p.float {
+	
+	clear: none;
+}
+
+.jSaleForm p.float-left {
+	float: left;
+	clear: none;
+	padding: 5px;
+	text-align: center;
+	font-weight: normal;
+	max-width: 150px;
+}
+
+.jSaleForm p.align-right {
+	text-align: right;
+	font-weight: normal;
+	font-size: 80%;
+}
+
+.jSaleForm p.float-left:hover, .jSaleForm p.float-left.hover {
+	background: #ff0;
+}
+
+.jSaleForm p.float-left label, .jSaleForm p.float-left input{
+	cursor: pointer;
+}
+
+.jSaleForm p.float input {
+    width: 500px;
+    height: 50px;
+    font-family: 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    text-decoration: none;
+    color: #000;
+    text-align: left;
+    margin-top: 15px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: inset 2px 2px 0 0 #ccc;
+    border-width: 1px;
+}
+.jSaleCall{
+	background-color: #f0eee9;
+}
+	
+.jSaleCall p.float input {
+	width: 100%;
+}
+.toptext {
+	width:100%;
+	padding-top: 20px;
+}
+.toptext span:first-child {
+	font-family: Proximanova, Proximanova Regular;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+}
+.toptext span {
+	font-weight: normal;
+	font-family: Proximanova Regular;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    color: #333333;
+    line-height: normal;
+}
+
+.topimage {
+	float: left;
+}
+
+.jSaleForm textarea {
+	width: 95%;
+}
+
+.jSaleForm #payment_info, .jSaleForm #delivery_info{
+/*	background: #ececec;
+	margin: 0 10px;*/
+	margin-top: 10px;
+    font-family: 'Arial';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 15px;
+    color: #333333;
+    line-height: normal;
+    padding-left: 10px;
+}
+
+.jSaleForm div.add_product_param {
+	clear:both;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #999;
+}
+
+/*************  CLEARFIX  ***************/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+.clearfix {
+	display: block;
+}
+/*************  SIMPLEMODAL  ***************/
+
+/* Overlay */
+#simplemodal-overlay {background-color:#111; /*cursor:wait;*/}
+
+/* Container */
+#simplemodal-container {height: auto; width: auto; max-width: 700px; background-color:#f0eee9; border:0px solid #000000; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -moz-box-shadow: 0 2px 10px #999999;-webkit-box-shadow: 0 2px 8px #999999;box-shadow: 0 2px 8px #000000; }
+#simplemodal-container a.modalCloseImg {background:url('../images/x.png') no-repeat; width:29px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-18px; cursor:pointer;}
+#simplemodal-container #basicModalContent {padding:8px;}
+
+
+
+
+/**/
+
+.img{
+	padding-right: 20px;
+}
+
+#u44 {
+    font-size: 24px;
+    text-align: left;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.u441{
+    margin-top: 15px;
+    padding-top: 20px;
+    border-top: 1px solid #999;
+    margin-bottom: 30px !important;
+}
+label{
+	font-family: Proximanova Regular, Proximanova;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    display: inline-block;
+    width: 300px;
+}
+.deliv_type{
+	    -webkit-appearance: menulist-button;
+    border-color: none;
+    width: 380px;
+    height: 40px;
+    font-family: 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    text-decoration: none;
+    color: #000000;
+    padding-left: 5px;
+	background-image: linear-gradient(white 0%, #f3f3f3 100%);
+	border: 1px solid #cccccc;
+}
+.deliv_type_info{
+    width: 500px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #999;
+    border-radius: 0px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding:10px;
+    border-radius: 5px;
+}
+
+.t_comm{
+    width: 500px !important;
+    height: 80px;
+    font-family: 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    text-decoration: none;
+    color: #000;
+    text-align: left;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: inset 2px 3px 0 0 #ccc;
+    border-width: 1px;
+    border-color: #f7f7f7;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+hr{
+	border-top: 1px solid #999;
+	margin-top: 30px;
+    margin-bottom: 40px;
+}
+.itog{
+	font-family: Proximanova, sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 22px;
+    text-align: center;
+    display: block;
+	margin-bottom: 15px;
+}
+.itog-light{
+	font-family: Proximanova Regular, sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 22px;
+    text-align: center;
+    display: block;
+	margin-bottom: 15px;
+}
+.itog-price{
+	font-family: Proximanova, sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 24px;
+}
+.bold-phone{
+	font-weight: bold;
+}
+.free-delivery-wrapper {
+  margin-bottom: 40px;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.free-delivery-text {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 9px 13px;
+  font-family: Proximanova, sans-serif;
+  color: #50b91c;
+  font-size: 24px;
+  text-align: center;
+}
+.add-option{
+	margin-left: 185px;
+}

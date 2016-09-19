@@ -1,0 +1,82 @@
+.date {
+	font-size:10px;
+	color:#888;
+}
+
+.breadcrumb .active a {
+	color: #999;
+}
+
+.check_all {
+	cursor: pointer;
+}
+
+.well-inverse {
+	background-color: transparent;
+}
+
+.message-block {
+	padding-bottom: 0;
+}
+
+.input-append  label {
+	display: inline;
+	vertical-align: middle;
+	line-height: 30px;
+	margin-right: 10px;
+}
+
+.no_margin {
+	margin: 0;
+}
+
+.table th.centered {
+	text-align: center;
+}
+
+#orders_list, #referers_list, #products_list {
+	display: none;
+}
+
+.width_260 {
+	display: inline-block;
+	width: 260px;
+}
+
+.width_150 {
+	display: inline-block;
+	width: 150px;
+}
+
+.width_100 {
+	display: inline-block;
+	width: 100px;
+}
+
+
+.width_50 {
+	display: inline-block;
+	width: 50px;
+}
+
+.dotted {
+	border-bottom: 1px dotted #999;
+}
+
+.t_right {
+	text-align: right;
+}
+
+.parameters h4 {
+	width: 410px;
+	border-bottom: 1px dotted #999;
+}
+
+.attention {
+	color: #f00;
+}
+
+.controls select {
+	width: auto;
+	min-width: 220px;
+}

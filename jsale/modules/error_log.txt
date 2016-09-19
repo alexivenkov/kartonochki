@@ -1,0 +1,7 @@
+[09-Sep-2016 23:06:09 Asia/Yekaterinburg] PHP Notice:  Undefined variable: order in /home/k/kartonocru/test/public_html/jsale/modules/C_SMS.inc.php on line 18
+[10-Sep-2016 11:09:38 Asia/Yekaterinburg] PHP Notice:  Undefined variable: order in /home/k/kartonocru/test/public_html/jsale/modules/C_SMS.inc.php on line 18
+[10-Sep-2016 12:35:46 Asia/Yekaterinburg] PHP Notice:  Undefined variable: order in /home/k/kartonocru/test/public_html/jsale/modules/C_SMS.inc.php on line 18
+[11-Sep-2016 22:24:36 Asia/Yekaterinburg] PHP Notice:  Undefined variable: order in /home/k/kartonocru/test/public_html/jsale/modules/C_SMS.inc.php on line 18
+[16-Sep-2016 13:56:16 Asia/Yekaterinburg] PHP Notice:  Undefined variable: order in /home/k/kartonocru/dev/public_html/jsale/modules/C_SMS.inc.php on line 18
+[16-Sep-2016 14:00:45 Asia/Yekaterinburg] PHP Notice:  Undefined variable: order in /home/k/kartonocru/dev/public_html/jsale/modules/C_SMS.inc.php on line 18
+[16-Sep-2016 14:24:56 Asia/Yekaterinburg] PHP Notice:  Undefined variable: order in /home/k/kartonocru/dev/public_html/jsale/modules/C_SMS.inc.php on line 18
