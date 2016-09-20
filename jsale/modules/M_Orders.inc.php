@@ -8,22 +8,24 @@ class M_Orders
 	private static $instance; 	# ссылка на экземпляр класса
 	private $msql; 				# драйвер БД
 	private $admin; 			# признак админа
+    private $config;
 
 	# Получение единственного экземпляра класса
-	public static function Instance()
+	public static function Instance($config = null)
 	{
 		if (self::$instance == null)
-			self::$instance = new M_Orders();
+			self::$instance = new M_Orders($config);
 
 		return self::$instance;
 	}
 
 	# Конструктор
-	public function __construct()
+	public function __construct($config = null)
 	{
 		# Подключение драйвера работы с БД и модели администратора
 		$this->msql = MSQL::Instance();
 		$this->admin = M_Admin::Instance();
+        $this->config = $config;
 	}
 	
 	public function GetAllOrders($statuses = null, $fail = null)
@@ -129,7 +131,7 @@ class M_Orders
 	}
 
 	# Создание заказа
-	public function CreateOrder($lastName, $name, $fatherName, $email, $phone, $zip, $country, $region, $city, $address, $comment, $payment, $juridical = null, $delivery = null, $delivery_cost = 0, $date, $order_sum, $status, $id_user = 0,  $utm = '', $source = '', $config = 0, $ip = '', $yandex_payment_type = '', $domain = '')
+	public function CreateOrder($lastName, $name, $fatherName, $email, $phone, $zip, $country, $region, $city, $address, $comment, $payment, $juridical = null, $delivery = null, $delivery_cost = 0, $date, $order_sum, $status, $id_user = 0,  $utm = '', $source = '', $conf = 0, $ip = '', $yandex_payment_type = '', $domain = '')
 	{
 		# Проверка данных
 		if (!isset($name) || !isset($email) || !isset($phone) || !isset($address) || !isset($payment) || !isset($date) || !isset($order_sum))
@@ -161,10 +163,11 @@ class M_Orders
         $obj['id_user'] = $id_user;
 		$obj['utm'] = $utm;
 		$obj['source'] = $source;
-		$obj['config'] = $config;
+		$obj['config'] = $conf;
 		$obj['payment_ym'] = $yandex_payment_type;
 		$obj['ip'] = $ip;
 		$obj['domain'] = $domain;
+        $obj['manager_bonus'] =  $this->config['manager']['fix_bonus'];
 
 		return $this->msql->Insert('custom', $obj);
 	}

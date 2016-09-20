@@ -3,7 +3,7 @@
 
 # Подключение модуля работы с базой данных.
 include_once dirname(__FILE__) . '/M_Orders.inc.php';
-$mOrders = M_Orders::Instance();
+$mOrders = M_Orders::Instance($config);
 
 # Если заказ отправлен, то добавление его в базу данных
 if (isset($new_order))

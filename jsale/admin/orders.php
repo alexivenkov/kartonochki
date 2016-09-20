@@ -54,7 +54,7 @@ include_once dirname(__FILE__) . '/_menu.php';
 
 # Подключение необходимых модулей
 include_once dirname(__FILE__) . '/../modules/M_Orders.inc.php';
-$mOrders = M_Orders::Instance();
+$mOrders = M_Orders::Instance($config);
 
 # Определение текущей страницы
 if (isset($_GET['page']))
