@@ -200,7 +200,6 @@ else
 				# Все заказы с привязанным менеджером
 				$all_orders = $mDB->GetItemsByParam('custom', 'id_manager', $manager['id_manager']);
 				$total_count = count($all_orders);
-				$fix_sum = 0;
 
 				foreach ($all_orders as $id => $order)
 				{
@@ -211,55 +210,53 @@ else
 						$paid_count++;
 					$partner_sum = $partner2_sum = $author_sum = 0;
 
-                    if(!$order['manager_bonus']) {
-                        foreach ($order_items as $order_item)
+                    foreach ($order_items as $order_item)
+                    {
+                        # Учёт отчислений партнёру
+                        if (in_array($order['status'], $success_statuses))
                         {
+                            # Учёт скидки
+                            if ($config['discounts']['fixed'] === true)
+                                $real_paid_sum = $order_item['quantity'] * $order_item['price'] - $order_item['discount'];
+                            else
+                                $real_paid_sum = $order_item['quantity'] * $order_item['price'] * (1 - $order_item['discount'] / 100);
+
                             # Учёт отчислений партнёру
-                            if (in_array($order['status'], $success_statuses))
+                            if ($config['partner']['enabled'] === true && $order['id_partner'] != '0')
                             {
-                                # Учёт скидки
-                                if ($config['discounts']['fixed'] === true)
-                                    $real_paid_sum = $order_item['quantity'] * $order_item['price'] - $order_item['discount'];
-                                else
-                                    $real_paid_sum = $order_item['quantity'] * $order_item['price'] * (1 - $order_item['discount'] / 100);
+                                $partner = $mDB->GetItemById('partner', $order['id_partner']);
 
-                                # Учёт отчислений партнёру
-                                if ($config['partner']['enabled'] === true && $order['id_partner'] != '0')
+                                if (isset($partner) && !empty($partner))
                                 {
-                                    $partner = $mDB->GetItemById('partner', $order['id_partner']);
+                                    $partner_sum = $real_paid_sum * ($order_item['partner_rate'] / 100);
 
-                                    if (isset($partner) && !empty($partner))
+                                    if ($config['partner']['levels'] === 2 && $partner['referer'] != '0')
                                     {
-                                        $partner_sum = $real_paid_sum * ($order_item['partner_rate'] / 100);
-
-                                        if ($config['partner']['levels'] === 2 && $partner['referer'] != '0')
-                                        {
-                                            $partner2_sum = $real_paid_sum * ($config['partner']['percent']['level_2'] / 100);
-                                        }
+                                        $partner2_sum = $real_paid_sum * ($config['partner']['percent']['level_2'] / 100);
                                     }
                                 }
-
-                                # Учёт отчислений автору
-                                if ($config['author']['enabled'] === true && isset($product['author']) && $product['author'] != '0')
-                                {
-                                    $author = $mDB->GetItemById('author', $product['author']);
-
-                                    if ($author)
-                                        $author_sum = ($real_paid_sum - $partner_sum - $partner2_sum) * ($config['author']['percent'] / 100);
-                                }
-
-                                $paid_sum += $commission = $real_paid_sum - $partner_sum - $partner2_sum - $author_sum;
                             }
-                            $all_orders[$id]['items'][] = $order_item;
+
+                            # Учёт отчислений автору
+                            if ($config['author']['enabled'] === true && isset($product['author']) && $product['author'] != '0')
+                            {
+                                $author = $mDB->GetItemById('author', $product['author']);
+
+                                if ($author)
+                                    $author_sum = ($real_paid_sum - $partner_sum - $partner2_sum) * ($config['author']['percent'] / 100);
+                            }
+
+                            $paid_sum = $commission +=  $real_paid_sum - $partner_sum - $partner2_sum - $author_sum;
                         }
-                    } else {
-                        $all_orders[$id]['items'] = $order_items;
-                        $fix_sum += $commission = $order['manager_bonus'];
+                        $all_orders[$id]['items'][] = $order_item;
                     }
-                    $all_orders[$id]['commission'] = number_format( $commission * ($config['manager']['percent'] / 100), 2, '.', '');
+
+                    $all_orders[$id]['commission'] = $order['manager_bonus'] ?: number_format($commission * ($config['manager']['percent'] / 100), 2, '.', '');
 				}
-				
-				$paid_sum = $paid_sum * $config['manager']['percent'] / 100 + $fix_sum;
+
+				$paid_sum = array_sum(array_map(function($item) {
+				    return $item['commission'];
+                }, $all_orders));
 			}
 		}
 		else
