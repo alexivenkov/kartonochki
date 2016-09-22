@@ -254,7 +254,7 @@ else
                         }
                     } else {
                         $all_orders[$id]['items'] = $order_items;
-                        $fix_sum += $order['manager_bonus'];
+                        $fix_sum += $commission = $order['manager_bonus'];
                     }
                     $all_orders[$id]['commission'] = number_format( $commission * ($config['manager']['percent'] / 100), 2, '.', '');
 				}
