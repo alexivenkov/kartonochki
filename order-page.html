@@ -59,7 +59,7 @@
     <div class="w-container order-bg">
       <h1 class="h2">Оформление заказа</h1>
       <div class="order-wrapper">
-		<script type="text/javascript" src="http://dev.kartonochki.ru/jsale/JS.php?product=gc2.0+&form_type=form&upsell=1&upsell=page"></script>
+		<script type="text/javascript" src="http://kartonochki.dev:81/jsale/JS.php?product=gc2.0+&form_type=form&upsell=1&upsell=page"></script>
       </div>
     </div>
   </div>
@@ -99,18 +99,18 @@
   <script type="text/javascript" src="js/jquery.cookie.js"></script> 
   <script type="text/javascript" src="js/utm_multi_vid.js"></script> 
   <script type="text/javascript" src="js/kartonochki.js"></script>
-  <script charset="utf-8" src="http://api-maps.yandex.ru/1.1/index.xml?key=ABXRX1cBAAAA7dJyOgIA5RMaKGCI6BB7tjHYw4pQJFXsqXgAAAAAAAAAAADWQmsR13U8cKIvt2coqEQPm044fQ==" type="text/javascript"></script>   
+  <script charset="utf-8" src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-	if (YMaps.location.city != '') {
-		$('.country span').html(YMaps.location.country);
-		$('.region span').html(YMaps.location.region);
-		var youCity = (YMaps.location.city);
-		if (youCity === "Уфа"){
-			$('.free-delivery-text').text('Ого! По Уфе доставка курьером БЕСПЛАТНО!');
-		 }
-		$('.city').html(YMaps.location.city);
-	}
+        if (YMaps.location.city != '') {
+            $('.country span').html(YMaps.location.country);
+            $('.region span').html(YMaps.location.region);
+            var youCity = (YMaps.location.city);
+            if (youCity === "Уфа"){
+                $('.free-delivery-text').text('Ого! По Уфе доставка курьером БЕСПЛАТНО!');
+             }
+            $('.city').html(YMaps.location.city);
+        }
 	});
 	</script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->

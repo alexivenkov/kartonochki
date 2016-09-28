@@ -6,22 +6,34 @@
 	<? else: ?>
 	<? endif; ?>
 	
-	<!-- Скрипт подмены текста в зависимости от геолокации -->  
-	<script charset="utf-8" src="http://api-maps.yandex.ru/1.1/index.xml?key=ABXRX1cBAAAA7dJyOgIA5RMaKGCI6BB7tjHYw4pQJFXsqXgAAAAAAAAAAADWQmsR13U8cKIvt2coqEQPm044fQ==" type="text/javascript"></script>	  
+	<!-- Скрипт подмены текста в зависимости от геолокации -->
+	<script charset="utf-8" src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
 	<div class="free-delivery-wrapper">
 		<div class="free-delivery-text">&gt;&gt;&gt; При заказе от 2800 р. доставка бесплатно! &lt;&lt;&lt;</div>
 	</div>		  
 	<script type="text/javascript">
 	$(document).ready(function() {
-	if (YMaps.location.city != '') {
-		$('.country span').html(YMaps.location.country);
-		$('.region span').html(YMaps.location.region);
-		var youCity = (YMaps.location.city);
-		if (youCity === "Уфа"){
-			$('.free-delivery-text').text('Ого! По Уфе доставка курьером БЕСПЛАТНО!');
-		 }
-		$('.city').html(YMaps.location.city);
-	}
+		var $city = $('input[name=order_city]');
+
+		if (YMaps.location.city != '') {
+			$('.country span').html(YMaps.location.country);
+			$('.region span').html(YMaps.location.region);
+			var youCity = (YMaps.location.city);
+
+			/*$city.attr('value', youCity);
+			$city.prop('disabled', true);*/
+
+			if (youCity === "Уфа"){
+				$('.free-delivery-text').text('Ого! По Уфе доставка курьером БЕСПЛАТНО!');
+			 }
+			$('.city').html(YMaps.location.city);
+		}
+
+		$city.on('change', function() {
+			$.post('/jsale/cities.php', {}, function(data) {
+				console.log(data);
+			});
+		});
 	});
 	</script>
 
