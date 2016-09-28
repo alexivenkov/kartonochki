@@ -581,3 +581,12 @@ hr{
 .add-option{
 	margin-left: 185px;
 }
+
+.order-city {
+    width: 395px !important;
+    margin-right: 5px;
+}
+
+.order-city-button {
+    width: 100px !important;
+}

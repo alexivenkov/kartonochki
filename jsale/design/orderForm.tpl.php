@@ -1,4 +1,5 @@
 <form action="<?= $config['sitelink'] . $config['dir'] ?>relay.php" method="post" class="jSaleForm" id="jsale_form_<?= $id_form ?>">
+	<script type="text/javascript" src="<?= $config['sitelink'] . $config['dir'] ?>js/autocomplete/jquery.autocomplete.min.js"></script>
 	<? if (isset($message) && is_string($message)): ?>
 	<h6 class="jSaleMessage">
 		<?= $message; ?>
@@ -13,7 +14,7 @@
 	</div>		  
 	<script type="text/javascript">
 	$(document).ready(function() {
-		var $city = $('input[name=order_city]');
+		var $city = $('#order-city');
 
 		if (YMaps.location.city != '') {
 			$('.country span').html(YMaps.location.country);
@@ -29,10 +30,18 @@
 			$('.city').html(YMaps.location.city);
 		}
 
-		$city.on('change', function() {
+		/*$city.on('change', function() {
 			$.post('/jsale/cities.php', {}, function(data) {
 				console.log(data);
 			});
+		});*/
+
+		$city.autocomplete({
+			serviceUrl: '/jsale/cities.php',
+			lookup: data,
+			onSelect: function(suggestion) {
+				console.log(suggestion);
+			}
 		});
 	});
 	</script>
@@ -144,7 +153,8 @@
 	<? if ($config['form']['city']['enabled'] == true): ?>
 	<p class="float">
 		<label><?= $config['form']['city']['label'];?><? if ($config['form']['city']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label>
-		<input type="text" name="order_city" value="<?= (isset($city)) ? $city : '';?>" placeholder="<?= $config['form']['city']['example'] ?>">
+		<input id="order-city" class="order-city" type="text" name="order_city" value="<?= (isset($city)) ? $city : '';?>" placeholder="<?= $config['form']['city']['example'] ?>">
+		<button class="order-city-button">Изменить</button>
 		<? if (isset($message) && is_array($message) && in_array('city', $message)): ?>
 		<span class="warning"><?= $config['form']['city']['empty'] ?></span>
 		<? endif; ?>
