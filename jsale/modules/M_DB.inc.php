@@ -302,6 +302,12 @@ class M_DB
 		return $result;
 	}
 
+	public function GetByLike($table, $param, $value) {
+        $query = "SELECT * FROM `$table` WHERE `$param` LIKE '%" . mysql_real_escape_string($value) . "%'";
+        $result = $this->msql->Select($query);
+        return $result;
+    }
+
 	# Выбор элемента по имени
 	public function GetItemByCode($table, $code_item)
 	{

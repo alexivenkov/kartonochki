@@ -1,5 +1,4 @@
 <form action="<?= $config['sitelink'] . $config['dir'] ?>relay.php" method="post" class="jSaleForm" id="jsale_form_<?= $id_form ?>">
-	<script type="text/javascript" src="<?= $config['sitelink'] . $config['dir'] ?>js/autocomplete/jquery.autocomplete.min.js"></script>
 	<? if (isset($message) && is_string($message)): ?>
 	<h6 class="jSaleMessage">
 		<?= $message; ?>
@@ -14,15 +13,16 @@
 	</div>		  
 	<script type="text/javascript">
 	$(document).ready(function() {
-		var $city = $('#order-city');
+		var $city = $('#order-city'),
+			$button = $('#change-city');
 
 		if (YMaps.location.city != '') {
 			$('.country span').html(YMaps.location.country);
 			$('.region span').html(YMaps.location.region);
 			var youCity = (YMaps.location.city);
 
-			/*$city.attr('value', youCity);
-			$city.prop('disabled', true);*/
+			$city.attr('value', youCity);
+			$city.prop('disabled', true);
 
 			if (youCity === "Уфа"){
 				$('.free-delivery-text').text('Ого! По Уфе доставка курьером БЕСПЛАТНО!');
@@ -30,18 +30,18 @@
 			$('.city').html(YMaps.location.city);
 		}
 
-		/*$city.on('change', function() {
-			$.post('/jsale/cities.php', {}, function(data) {
-				console.log(data);
-			});
-		});*/
+		$button.on('click', function (e) {
+			e.preventDefault();
+			$city.prop('disabled', false);
+			$city.focus();
+		});
+
+		$city.blur(function() {
+			$(this).prop('disabled', true);
+		});
 
 		$city.autocomplete({
-			serviceUrl: '/jsale/cities.php',
-			lookup: data,
-			onSelect: function(suggestion) {
-				console.log(suggestion);
-			}
+			serviceUrl: '/jsale/cities.php'
 		});
 	});
 	</script>
@@ -154,7 +154,7 @@
 	<p class="float">
 		<label><?= $config['form']['city']['label'];?><? if ($config['form']['city']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label>
 		<input id="order-city" class="order-city" type="text" name="order_city" value="<?= (isset($city)) ? $city : '';?>" placeholder="<?= $config['form']['city']['example'] ?>">
-		<button class="order-city-button">Изменить</button>
+		<button id="change-city" class="order-city-button">Изменить</button>
 		<? if (isset($message) && is_array($message) && in_array('city', $message)): ?>
 		<span class="warning"><?= $config['form']['city']['empty'] ?></span>
 		<? endif; ?>
