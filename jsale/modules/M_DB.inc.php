@@ -302,12 +302,6 @@ class M_DB
 		return $result;
 	}
 
-	public function GetByLike($table, $param, $value) {
-        $query = "SELECT * FROM `$table` WHERE `$param` LIKE '%" . mysql_real_escape_string($value) . "%'";
-        $result = $this->msql->Select($query);
-        return $result;
-    }
-
 	# Выбор элемента по имени
 	public function GetItemByCode($table, $code_item)
 	{
@@ -593,7 +587,18 @@ class M_DB
 
 		return $this->msql->Insert('status', $params);
 	}
-		
+
+    public function ajaxCity($value) {
+        if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
+            return false;
+        }
+
+        $query = "SELECT `id`, `city_name` FROM `geo_data` WHERE `city_name` LIKE '" . mysql_real_escape_string($value) . "%'";
+        $result = $this->msql->Select($query);
+
+        return $result;
+    }
+
 	# Вырезание GET параметров из URL
 	public function RemoveGET($url)
 	{

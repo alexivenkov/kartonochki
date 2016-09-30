@@ -1585,3 +1585,16 @@ textarea.w-select {
     margin-right: auto;
     margin-left: auto;
 }
+
+#city-text {
+  font-size: 16px;
+    font-weight: 700;
+}
+
+#city-change {
+  float: right;
+  margin-right: 25px;
+  border-bottom: 1px dashed #0B93F6;
+  color: #0B93F6;
+  cursor: pointer;
+}

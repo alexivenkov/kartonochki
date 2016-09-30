@@ -509,6 +509,11 @@ label{
     box-shadow: none;
     padding:10px;
     border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.deliv_type_info input {
+    vertical-align: middle;
 }
 
 .t_comm{

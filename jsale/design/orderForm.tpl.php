@@ -13,16 +13,18 @@
 	</div>		  
 	<script type="text/javascript">
 	$(document).ready(function() {
-		var $city = $('#order-city'),
-			$button = $('#change-city');
+		var $cityText = $('#city-text'),
+			$cityValue = $('#city-value'),
+			$cityInput = $('#city-input'),
+			$cityChange = $('#city-change');
 
 		if (YMaps.location.city != '') {
 			$('.country span').html(YMaps.location.country);
 			$('.region span').html(YMaps.location.region);
 			var youCity = (YMaps.location.city);
 
-			$city.attr('value', youCity);
-			$city.prop('disabled', true);
+			$cityText.text(youCity);
+			$cityValue.val(youCity);
 
 			if (youCity === "Уфа"){
 				$('.free-delivery-text').text('Ого! По Уфе доставка курьером БЕСПЛАТНО!');
@@ -30,19 +32,45 @@
 			$('.city').html(YMaps.location.city);
 		}
 
-		$button.on('click', function (e) {
-			e.preventDefault();
-			$city.prop('disabled', false);
-			$city.focus();
+		$cityInput.autocomplete({
+			serviceUrl: '/jsale/cities.php',
+			onSelect: function(suggestion) {
+				$cityValue.val(suggestion.value);
+				$cityText.text(suggestion.value);
+			}
 		});
 
-		$city.blur(function() {
-			$(this).prop('disabled', true);
+		$cityChange.on('click', function () {
+			$(this).toggle();
+			$cityText.toggle();
+			$cityInput.toggle().val('').focus();
 		});
 
-		$city.autocomplete({
-			serviceUrl: '/jsale/cities.php'
+		$cityInput.blur(function() {
+			$(this).toggle();
+			$cityText.toggle();
+			$cityChange.toggle();
 		});
+
+		$('input[name=order_delivery]').on('click', function () {
+			switch ($(this).val()) {
+				case '0':
+					$('#address').show();
+					break;
+				case '1':
+					$('#address').show();
+					break;
+				case '2':
+					$('#address').hide();
+
+					var apiUrl = 'http://gw.edostavka.ru:11443/pvzlist.php?cityid=';
+
+					break;
+				default :
+					break;
+			}
+		});
+
 	});
 	</script>
 
@@ -153,24 +181,18 @@
 	<? if ($config['form']['city']['enabled'] == true): ?>
 	<p class="float">
 		<label><?= $config['form']['city']['label'];?><? if ($config['form']['city']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label>
-		<input id="order-city" class="order-city" type="text" name="order_city" value="<?= (isset($city)) ? $city : '';?>" placeholder="<?= $config['form']['city']['example'] ?>">
-		<button id="change-city" class="order-city-button">Изменить</button>
+		<span id="city-container">
+			<span id="city-text"></span>
+			<span id="city-change">Другой город?</span>
+
+			<input id="city-input" type="text" value="<?= (isset($city)) ? $city : '';?>" style="display: none">
+		</span>
+		<input id="city-value" type="hidden" name="order_city" value="">
 		<? if (isset($message) && is_array($message) && in_array('city', $message)): ?>
 		<span class="warning"><?= $config['form']['city']['empty'] ?></span>
 		<? endif; ?>
 	</p>
 	<? endif; ?>
-	<? if ($config['form']['address']['enabled'] == true): ?>
-	<p class="float">
-		<label><?= $config['form']['address']['label'];?><? if ($config['form']['address']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?>:</label>
-		<input type="text" name="order_address" value="<?= (isset($address)) ? $address : '';?>" placeholder="<?= $config['form']['address']['example'] ?>">
-		<? if (isset($message) && is_array($message) && in_array('address', $message)): ?>
-		<span class="warning"><?= $config['form']['address']['empty'] ?></span>
-	
-		<? endif; ?>
-	</p>
-	<? endif; ?>
-
 	<? if (count($config['payments']) > 1 || $config['deliveries_view'] == true): ?>
 		<p>
 		<label>Выбор метода оплаты:</label>
@@ -216,30 +238,53 @@
 	<? endif; ?>
 	<? if (count($config['deliveries']) > 1 || $config['deliveries_view'] == true): ?>
 		<div>
-		<label style="vertical-align: top;padding-top: 15px;">Способ доставки:</label>
-		<div style="display:inline-block" class="deliv_type_info">
-			<select name="order_delivery" onchange="show_delivery_info_<?= $id_form ?>(this);" class="deliv_type">
-				<? foreach ($config['deliveries'] as $type => $delivery): ?>
-				<? if ($delivery['enabled'] == true && isset($payment_type)): ?>
-				<? if ($config['payment2delivery']['enabled'] !== true || $config['payment2delivery']['enabled'] === true && !isset($config['payment2delivery'][$payment_type]) || $config['payment2delivery']['enabled'] === true && isset($config['payment2delivery'][$payment_type]) && in_array($type, $config['payment2delivery'][$payment_type])): ?>
-				<option value="<?= $type ?>"<? if (isset($delivery_type) && $type == $delivery_type): ?> selected="selected"<? endif; ?>><?= $delivery['title'] ?></option>
-				<? endif; ?>
-				<? endif; ?>
-				<? endforeach; ?>
+			<label style="vertical-align: top;padding-top: 15px;">Способ доставки:</label>
+			<div style="display: inline-block">
+				<div class="deliv_type_info">
+					<input type="radio" name="order_delivery" value="1" />
+					<label>Почта России</label>
+				</div>
+				<div class="deliv_type_info">
+					<input type="radio" name="order_delivery" checked value="0" />
+					<label>Курьерская доставка</label>
+					<p>400 р., 2-4 дня. Подробности у оператора.</p>
+				</div>
+				<div class="deliv_type_info">
+					<input type="radio" name="order_delivery" value="2" />
+					<label>Пункты выдачи заказов</label>
+				</div>
+			</div>
+
+		<!--<div style="display:inline-block" class="deliv_type_info">
+			<select name="order_delivery" onchange="show_delivery_info_<?/*= $id_form */?>(this);" class="deliv_type">
+				<?/* foreach ($config['deliveries'] as $type => $delivery): */?>
+				<?/* if ($delivery['enabled'] == true && isset($payment_type)): */?>
+				<?/* if ($config['payment2delivery']['enabled'] !== true || $config['payment2delivery']['enabled'] === true && !isset($config['payment2delivery'][$payment_type]) || $config['payment2delivery']['enabled'] === true && isset($config['payment2delivery'][$payment_type]) && in_array($type, $config['payment2delivery'][$payment_type])): */?>
+				<option value="<?/*= $type */?>"<?/* if (isset($delivery_type) && $type == $delivery_type): */?> selected="selected"<?/* endif; */?>><?/*= $delivery['title'] */?></option>
+				<?/* endif; */?>
+				<?/* endif; */?>
+				<?/* endforeach; */?>
 			</select>
 			<div id="delivery_info">
-			<? foreach ($config['deliveries'] as $type => $delivery): ?>
-				<? if ($delivery['enabled'] == true): ?>
-				<p class="<?= $type ?>"><?= $delivery['info'] ?></p>
-				<? endif; ?>
-			<? endforeach; ?>
+			<?/* foreach ($config['deliveries'] as $type => $delivery): */?>
+				<?/* if ($delivery['enabled'] == true): */?>
+				<p class="<?/*= $type */?>"><?/*= $delivery['info'] */?></p>
+				<?/* endif; */?>
+			<?/* endforeach; */?>
 			</div>
-		</div>
+		</div>-->
 		</div>
 	<? else: ?>
 	<input type="hidden" name="order_delivery" value="<? reset($config['deliveries']); echo key($config['deliveries']);?>">
 	<? endif; ?>
+	<p id="address" class="float">
+		<label><?= $config['form']['address']['label'];?><? if ($config['form']['address']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?>:</label>
+		<input type="text" name="order_address" value="<?= (isset($address)) ? $address : '';?>" placeholder="<?= $config['form']['address']['example'] ?>">
+		<? if (isset($message) && is_array($message) && in_array('address', $message)): ?>
+			<span class="warning"><?= $config['form']['address']['empty'] ?></span>
 
+		<? endif; ?>
+	</p>
 <div id="u44" class="text u441" style="visibility: visible; margin-top:30px;">
           <p><span style="color: #ff9000;">
 	3. Укажите контактную информацию</span></p>

@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
 	$product['bonus'] = (isset($_POST['order_bonus'])) ? $mEmail->ProcessText($_POST['order_bonus']) : '';
 	$product['discount'] = (isset($_POST['product_discount'])) ? htmlspecialchars($_POST['product_discount']) : 0;
 	
-	$product['form_config'] = (isset($_POST['form_config'])) ? htmlspecialchars($_POST['form_config']) : 0;
+	$product['form_config'] = (isset($_POST['form_config'])) ? htmlspecialchars((int) $_POST['form_config']) : 0;
 	$product['bandle_products'] = (isset($_POST['bandle_products'])) ? $_POST['bandle_products'] : '';
 	
 	$template = (isset($_POST['template'])) ? (int) htmlspecialchars($_POST['template']) : '';
