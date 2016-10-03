@@ -39,6 +39,6 @@ if($_GET['pvz']) {
     $id = $_GET['id'];
     $api = new API();
 
-    $pvz = $api->getPvz($id);
+    echo json_encode($api->getPvz($id), JSON_UNESCAPED_UNICODE);
 }
 exit;

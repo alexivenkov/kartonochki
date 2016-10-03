@@ -7,7 +7,6 @@
 	<? endif; ?>
 	
 	<!-- Скрипт подмены текста в зависимости от геолокации -->
-	<script charset="utf-8" src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
 	<div class="free-delivery-wrapper">
 		<div class="free-delivery-text">&gt;&gt;&gt; При заказе от 2800 р. доставка бесплатно! &lt;&lt;&lt;</div>
 	</div>		  
@@ -17,42 +16,36 @@
 			$cityValue = $('#city-value'),
 			$cityInput = $('#city-input'),
 			$cityChange = $('#city-change'),
+			geoData,
 			id;
 
-		if (YMaps.location.city != '') {
-			$('.country span').html(YMaps.location.country);
-			$('.region span').html(YMaps.location.region);
-			var youCity = (YMaps.location.city),
-				$spinner = $('#city-spinner');
+		ymaps.ready(function () {
+			ymaps.geolocation.get()
+				.then(geoResult);
+		});
 
-			$.ajax	({
-				url: '/jsale/cities.php',
-				data: {city: youCity},
-				dataType: 'json',
-				beforeSend: function() {
-					$spinner.toggle();
-				},
-				success: function(result) {
-					$spinner.toggle();
+		var geoResult = function (result) {
+			geoData = result.geoObjects.get(0).properties.getAll();
 
-					if (result.result) {
-						id = result.id;
-						$cityText.text(youCity);
-						$cityValue.val(youCity);
-					} else {
-						$cityChange.toggle();
-						$cityText.toggle();
-						$cityInput.toggle().focus();
+			if(geoData.name) {
+				$.ajax	({
+					url: '/jsale/cities.php',
+					data: {city: geoData.name},
+					dataType: 'json',
+					success: function(result) {
+						if (result.result) {
+							id = result.id;
+							$cityText.text(geoData.name);
+							$cityValue.val(geoData.name);
+						} else {
+							$cityChange.toggle();
+							$cityText.toggle();
+							$cityInput.toggle().focus();
+						}
 					}
-				}
-			});
-
-
-			if (youCity === "Уфа"){
-				$('.free-delivery-text').text('Ого! По Уфе доставка курьером БЕСПЛАТНО!');
-			 }
-			$('.city').html(YMaps.location.city);
-		}
+				});
+			}
+		};
 
 		$cityInput.autocomplete({
 			serviceUrl: '/jsale/cities.php',
@@ -84,10 +77,41 @@
 					break;
 				case '2':
 					$('#address').hide();
+					ymaps.ready(init);
+					var myMap;
 
-					$.get('/jsale/cities.php', {pvz: true, id: id}, function (result) {
-						console.log('done');
-					});
+					function init(){
+						var center = geoData.boundedBy[0];
+
+						map = new ymaps.Map("map", {
+							center: [center[0], center[1]],
+							zoom: 8,
+							controls: ['zoomControl']
+						});
+
+						$.get('/jsale/cities.php', {pvz: true, id: id}, function(result) {
+							result = $.parseJSON(result);
+
+							for(var data in result) {
+								var mark = new ymaps.Placemark([
+									result[data].coordY,
+									result[data].coordX
+								], {
+									hintContent: result[data].Name,
+									balloonContent: '<address><strong>' + result[data].Address + '</strong></address><br/>' +
+													result[data].Phone + '<br/>' +
+													result[data].WorkTime
+								});
+
+								mark.events.add('click', function() {
+									mark.iconColor = 'red';
+								});
+
+								map.geoObjects.add(mark);
+							}
+						});
+
+					}
 					break;
 				default :
 					break;
@@ -278,6 +302,8 @@
 				<div class="deliv_type_info">
 					<input type="radio" name="order_delivery" value="2" />
 					<label>Пункты выдачи заказов</label>
+					<div id="map" class="pvz-map">
+					</div>
 				</div>
 			</div>
 

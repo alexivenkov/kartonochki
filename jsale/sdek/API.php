@@ -14,20 +14,19 @@ class API
 
     public function getPvz($id)
     {
-        $url = 'http://gw.edostavka.ru:11443/pvzlist.php';
+        $url = "http://gw.edostavka.ru:11443/pvzlist.php?cityid=$id";
 
-        $result = $this->client->request('GET', $url, [
-            'cityid' => $id
-        ]);
+        $result = $this->client->get($url);
 
-        $xml = simplexml_load_string((string) $result->getBody(),"SimpleXMLElement", LIBXML_NOCDATA);
-        /*$states = array();
+        $xml = new SimpleXMLElement((string)$result->getBody());
 
-        foreach ($xml->children() as $state) {
-                $states[] = array('state' => (array) $state);
-        }*/
+        $result = array();
 
-        return json_encode($xml);
+        foreach ($xml as $node) {
+            $result[] = current($node->attributes());
+        }
+
+        return $result;
     }
 
 }
