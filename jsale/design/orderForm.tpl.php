@@ -16,15 +16,37 @@
 		var $cityText = $('#city-text'),
 			$cityValue = $('#city-value'),
 			$cityInput = $('#city-input'),
-			$cityChange = $('#city-change');
+			$cityChange = $('#city-change'),
+			id;
 
 		if (YMaps.location.city != '') {
 			$('.country span').html(YMaps.location.country);
 			$('.region span').html(YMaps.location.region);
-			var youCity = (YMaps.location.city);
+			var youCity = (YMaps.location.city),
+				$spinner = $('#city-spinner');
 
-			$cityText.text(youCity);
-			$cityValue.val(youCity);
+			$.ajax	({
+				url: '/jsale/cities.php',
+				data: {city: youCity},
+				dataType: 'json',
+				beforeSend: function() {
+					$spinner.toggle();
+				},
+				success: function(result) {
+					$spinner.toggle();
+
+					if (result.result) {
+						id = result.id;
+						$cityText.text(youCity);
+						$cityValue.val(youCity);
+					} else {
+						$cityChange.toggle();
+						$cityText.toggle();
+						$cityInput.toggle().focus();
+					}
+				}
+			});
+
 
 			if (youCity === "Уфа"){
 				$('.free-delivery-text').text('Ого! По Уфе доставка курьером БЕСПЛАТНО!');
@@ -63,8 +85,9 @@
 				case '2':
 					$('#address').hide();
 
-					var apiUrl = 'http://gw.edostavka.ru:11443/pvzlist.php?cityid=';
-
+					$.get('/jsale/cities.php', {pvz: true, id: id}, function (result) {
+						console.log('done');
+					});
 					break;
 				default :
 					break;
@@ -182,6 +205,9 @@
 	<p class="float">
 		<label><?= $config['form']['city']['label'];?><? if ($config['form']['city']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label>
 		<span id="city-container">
+			<span id="city-spinner" style="display: none">
+				<img src="/images/spin.gif" />
+			</span>
 			<span id="city-text"></span>
 			<span id="city-change">Другой город?</span>
 

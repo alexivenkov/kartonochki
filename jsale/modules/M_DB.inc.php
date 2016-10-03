@@ -588,12 +588,15 @@ class M_DB
 		return $this->msql->Insert('status', $params);
 	}
 
-    public function ajaxCity($value) {
-        if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
-            return false;
-        }
-
+    public function autocompleteCity($value) {
         $query = "SELECT `id`, `city_name` FROM `geo_data` WHERE `city_name` LIKE '" . mysql_real_escape_string($value) . "%'";
+        $result = $this->msql->Select($query);
+
+        return $result;
+    }
+
+    public function checkCity($value) {
+        $query = "SELECT `id` FROM `geo_data` WHERE `city_name` = '" . mysql_real_escape_string($value) . "'";
         $result = $this->msql->Select($query);
 
         return $result;
