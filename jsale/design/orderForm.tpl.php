@@ -1,3 +1,4 @@
+<script type="text/javascript" src="js/order-form.js"></script>
 <form action="<?= $config['sitelink'] . $config['dir'] ?>relay.php" method="post" class="jSaleForm" id="jsale_form_<?= $id_form ?>">
 	<? if (isset($message) && is_string($message)): ?>
 	<h6 class="jSaleMessage">
@@ -9,117 +10,7 @@
 	<!-- Скрипт подмены текста в зависимости от геолокации -->
 	<div class="free-delivery-wrapper">
 		<div class="free-delivery-text">&gt;&gt;&gt; При заказе от 2800 р. доставка бесплатно! &lt;&lt;&lt;</div>
-	</div>		  
-	<script type="text/javascript">
-	$(document).ready(function() {
-		var $cityText = $('#city-text'),
-			$cityValue = $('#city-value'),
-			$cityInput = $('#city-input'),
-			$cityChange = $('#city-change'),
-			geoData,
-			id;
-
-		ymaps.ready(function () {
-			ymaps.geolocation.get()
-				.then(geoResult);
-		});
-
-		var geoResult = function (result) {
-			geoData = result.geoObjects.get(0).properties.getAll();
-
-			if(geoData.name) {
-				$.ajax	({
-					url: '/jsale/cities.php',
-					data: {city: geoData.name},
-					dataType: 'json',
-					success: function(result) {
-						if (result.result) {
-							id = result.id;
-							$cityText.text(geoData.name);
-							$cityValue.val(geoData.name);
-						} else {
-							$cityChange.toggle();
-							$cityText.toggle();
-							$cityInput.toggle().focus();
-						}
-					}
-				});
-			}
-		};
-
-		$cityInput.autocomplete({
-			serviceUrl: '/jsale/cities.php',
-			onSelect: function(suggestion) {
-				$cityValue.val(suggestion.value);
-				$cityText.text(suggestion.value);
-			}
-		});
-
-		$cityChange.on('click', function () {
-			$(this).toggle();
-			$cityText.toggle();
-			$cityInput.toggle().val('').focus();
-		});
-
-		$cityInput.blur(function() {
-			$(this).toggle();
-			$cityText.toggle();
-			$cityChange.toggle();
-		});
-
-		$('input[name=order_delivery]').on('click', function () {
-			switch ($(this).val()) {
-				case '0':
-					$('#address').show();
-					break;
-				case '1':
-					$('#address').show();
-					break;
-				case '2':
-					$('#address').hide();
-					ymaps.ready(init);
-					var myMap;
-
-					function init(){
-						var center = geoData.boundedBy[0];
-
-						map = new ymaps.Map("map", {
-							center: [center[0], center[1]],
-							zoom: 8,
-							controls: ['zoomControl']
-						});
-
-						$.get('/jsale/cities.php', {pvz: true, id: id}, function(result) {
-							result = $.parseJSON(result);
-
-							for(var data in result) {
-								var mark = new ymaps.Placemark([
-									result[data].coordY,
-									result[data].coordX
-								], {
-									hintContent: result[data].Name,
-									balloonContent: '<address><strong>' + result[data].Address + '</strong></address><br/>' +
-													result[data].Phone + '<br/>' +
-													result[data].WorkTime
-								});
-
-								mark.events.add('click', function() {
-									mark.iconColor = 'red';
-								});
-
-								map.geoObjects.add(mark);
-							}
-						});
-
-					}
-					break;
-				default :
-					break;
-			}
-		});
-
-	});
-	</script>
+	</div>
 
 <div id="u44" class="text" style="visibility: visible;">
           <p><span style="color: #ff9000;">1. Выберите количество</span></p>
@@ -291,19 +182,18 @@
 			<label style="vertical-align: top;padding-top: 15px;">Способ доставки:</label>
 			<div style="display: inline-block">
 				<div class="deliv_type_info">
-					<input type="radio" name="order_delivery" value="1" />
+					<input type="radio" name="order_delivery" id="option-russianmail" checked value="1" />
 					<label>Почта России</label>
 				</div>
 				<div class="deliv_type_info">
-					<input type="radio" name="order_delivery" checked value="0" />
+					<input type="radio" name="order_delivery" id="option-courier" value="0" />
 					<label>Курьерская доставка</label>
 					<p>400 р., 2-4 дня. Подробности у оператора.</p>
 				</div>
 				<div class="deliv_type_info">
-					<input type="radio" name="order_delivery" value="2" />
+					<input type="radio" name="order_delivery" id="option-pvz" value="2" />
 					<label>Пункты выдачи заказов</label>
-					<div id="map" class="pvz-map">
-					</div>
+					<div id="map" class="pvz-map" style="display: none"></div>
 				</div>
 			</div>
 

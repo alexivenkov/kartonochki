@@ -111,7 +111,7 @@ $config['deliveries']['1']['details']		= ''; # Детали (будут высл
 $config['deliveries']['1']['cost']			= '310'; # Стоимость (будет добавлено к стоимости заказа)
 $config['deliveries']['1']['free']			= '2800'; # Сумма заказа, более которой доставка будет бесплатна. Если не нужна, оставьте поле пустым
 
-$config['deliveries']['2']['enabled']		= false;
+$config['deliveries']['2']['enabled']		= true;
 $config['deliveries']['2']['title']			= 'ПВЗ';
 $config['deliveries']['2']['info']			= '200 р., 2-4 дня. Подробности у оператора';
 $config['deliveries']['2']['details']		= '';

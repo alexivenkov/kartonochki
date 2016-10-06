@@ -10,7 +10,8 @@ jQuery(document).ready(function($) {
 	});
 			
 	$('body').on('keyup', '.jSaleQty', function(e) {
-		
+		e.preventDefault();
+
 		var newQty = $(this).val();
 		var form = $(this).parents('.jSaleForm');
 		var form_type = form.find('[name="form_type"]').val();
@@ -19,7 +20,7 @@ jQuery(document).ready(function($) {
 			var updateTimer = window.setTimeout(function() {
 				var antispam = form.find('[name="order_spam"]').val();
 				form.find('[name="order_nospam"]').val(antispam);
-				$.ajax({
+				/*$.ajax({
 					url: form.attr('action'),
 					data: form.serialize() + '&action=discount',
 					type: 'POST',
@@ -32,7 +33,7 @@ jQuery(document).ready(function($) {
 					error: function() {
 						alert('Error sending request!');
 					}
-				});
+				});*/
 			}, 500);
 		}
 	});
@@ -83,8 +84,7 @@ jQuery(document).ready(function($) {
 		}
 		else
 			newQty = false;
-		
-		console.log(qty);
+
 		
 		if (newQty) {
 			qty_input.val(newQty);
@@ -92,7 +92,7 @@ jQuery(document).ready(function($) {
 			var updateTimer = window.setTimeout(function() {
 				var antispam = form.find('[name="order_spam"]').val();
 				form.find('[name="order_nospam"]').val(antispam);
-				$.ajax({
+				/*$.ajax({
 					url: form.attr('action'),
 					data: form.serialize() + '&action=discount',
 					type: 'POST',
@@ -105,7 +105,7 @@ jQuery(document).ready(function($) {
 					error: function() {
 						alert('Error sending request!');
 					}
-				});
+				});*/
 			}, 300);
 		}
 		

@@ -41,4 +41,18 @@ if($_GET['pvz']) {
 
     echo json_encode($api->getPvz($id), JSON_UNESCAPED_UNICODE);
 }
+
+if($_GET['calc']) {
+    /*$api = new API();
+    $date = new DateTime();
+
+    $params = array(
+        'dateExecute' => $date->format('Y-m-d'),
+        'receiverCityId' => (int) $_GET['city'],
+        'tariffId' => (int) $_GET['type']
+    );
+
+    $result = $api->calculateDeliveryCost($params);*/
+}
+
 exit;
