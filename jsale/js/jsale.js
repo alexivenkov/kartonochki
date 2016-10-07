@@ -68,54 +68,7 @@ jQuery(document).ready(function($) {
 			}
 		});
 	});
-	
-	$('body').on('click', '.jSaleQtyBtn', function(e) {
-		e.preventDefault();
-		var form = $(this).parents('.jSaleForm');
-		var form_type = form.find('[name="form_type"]').val();
-		var qty_input = form.find('.jSaleQty');
-		var qty = parseFloat(qty_input.val());
-		
-		if ($(this).hasClass('jSaleQtyMinus') && qty > 1) {
-			newQty = qty - 1;
-		}
-		else if ($(this).hasClass('jSaleQtyPlus')) {
-			newQty = qty + 1;
-		}
-		else
-			newQty = false;
 
-		
-		if (newQty) {
-			qty_input.val(newQty);
-		
-			var updateTimer = window.setTimeout(function() {
-				var antispam = form.find('[name="order_spam"]').val();
-				form.find('[name="order_nospam"]').val(antispam);
-				/*$.ajax({
-					url: form.attr('action'),
-					data: form.serialize() + '&action=discount',
-					type: 'POST',
-					success: function(response) {
-						if (form_type == 'form')
-							form.parents('.jSaleWrapper').html(response);
-						else
-							$('.simplemodal-wrap').html(response);
-					},
-					error: function() {
-						alert('Error sending request!');
-					}
-				});*/
-			}, 300);
-		}
-		
-		$(this).keydown(function(e) {
-			if (e.which !== 9) {
-				window.clearTimeout(updateTimer);
-			}
-		});
-	});
-	
 	$('body').on('keyup', '.jSaleCode', function(e) {
 
 		var newCode = $(this).val();

@@ -17,18 +17,18 @@
         </div>
 
 	<div class="topimage">
-	<img class="imgorder" src="http://test.kartonochki.ru/images/orderpage_img.jpg">
+		<img class="imgorder" src="http://test.kartonochki.ru/images/orderpage_img.jpg">
 	</div>
 	<div class="toptext">
-	<span>VR&ndash;шлем&nbsp;Google&nbsp;Cardboard&nbsp;2.0+</span><br>
-	<span>Улучшенная версия с ремешком и наклейками</span>
+		<span><?= $product['title']; ?></span><br>
+		<span><?= $product['param3']; ?><span>
 
 	<? if ($product['qty_type'] == 'text'): ?>
 		<div style="float:right; margin-top: -15px; padding-right: 70px;">
 		<?= ($config['product']['qty_buttons'] === true) ? '<button class="jSaleQtyBtn jSaleQtyMinus">-</button>' : ''?>
 		<input type="text" name="product_qty" value="<?= $product['qty']; ?>" class="jSaleQty">
 		<?= ($config['product']['qty_buttons'] === true) ? '<button class="jSaleQtyBtn jSaleQtyPlus">+</button>' : ''?> &nbsp;&nbsp;
-		<b style="font-size: 18px;"><?= $product['subtotal']; ?>&nbsp;р.</b>
+		<b style="font-size: 18px;"><span id="price"><?= $product['subtotal']; ?></span>&nbsp;р.</b>
 		</div>
 	<? else: ?>
 		<input type="hidden" name="product_qty" value="<?= $product['qty']; ?>" class="jSaleQty">

@@ -1,5 +1,6 @@
 $(function () {
     window.mapReady = false;
+    window.price = parseFloat($('#price').html());
 
     var App = {
         $cityText: $('#city-text'),
@@ -12,6 +13,7 @@ $(function () {
         $optionCourier: $('#option-courier'),
         $optionPvz: $('#option-pvz'),
         $quantity: $('.jSaleQty'),
+        $price: $('#price'),
         geoData: {
             cityName: '',
             cityId: null,
@@ -27,6 +29,7 @@ $(function () {
             this.initYMaps();
             this.changeQunatityOn();
             this.selectDeliveryOn();
+            this.quantityChangeOn();
         },
 
         initYMaps: function () {
@@ -225,6 +228,27 @@ $(function () {
 
             this.$quantity.on('change', function() {
                 that.calculateDelivery();
+            });
+        },
+
+        quantityChangeOn: function () {
+            var that = this;
+
+            $('.jSaleQtyBtn').on('click', function (e) {
+                e.preventDefault();
+
+                var quantity = that.$quantity.val();
+
+                if ($(this).hasClass('jSaleQtyMinus') && quantity > 1) {
+                    that.$price.html((parseFloat(that.$price.html()) - window.price).toFixed(2));
+                    quantity--;
+                    that.$quantity.val(quantity);
+                }
+                if ($(this).hasClass('jSaleQtyPlus')) {
+                    that.$price.html((parseFloat(that.$price.html()) + window.price).toFixed(2));
+                    quantity++;
+                    that.$quantity.val(quantity);
+                }
             });
         },
 
