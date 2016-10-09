@@ -10,7 +10,7 @@ if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUE
 
 $mDB = M_DB::Instance();
 
-if($_GET['query']) {
+if(isset($_GET['query'])) {
     $cities = $mDB->autocompleteCity($_GET['query']);
 
     $result = array(
@@ -24,7 +24,7 @@ if($_GET['query']) {
     echo json_encode($result);
 }
 
-if($_GET['city']) {
+if(isset($_GET['city'])) {
     $city = $mDB->checkCity($_GET['city']);
 
     if(count($city)) {
@@ -35,24 +35,30 @@ if($_GET['city']) {
     }
 }
 
-if($_GET['pvz']) {
+if(isset($_GET['pvz'])) {
     $id = $_GET['id'];
     $api = new API();
 
     echo json_encode($api->getPvz($id), JSON_UNESCAPED_UNICODE);
 }
 
-if($_GET['calc']) {
-    /*$api = new API();
-    $date = new DateTime();
+if(isset($_GET['calc'])) {
+    $api = new API();
 
     $params = array(
-        'dateExecute' => $date->format('Y-m-d'),
-        'receiverCityId' => (int) $_GET['city'],
-        'tariffId' => (int) $_GET['type']
+        'receiverCityId' => (int) $_GET['id'],
+        'tariffId' => API::$tariffMap[(int) $_GET['type']],
+        'goods' => array()
     );
 
-    $result = $api->calculateDeliveryCost($params);*/
+    $quantity = (int) $_GET['quantity'];
+
+    while ($quantity > 0) {
+        array_push($params['goods'], $_GET['product']);
+        $quantity--;
+    }
+
+    echo $api->calculateDeliveryCost($params);
 }
 
 exit;

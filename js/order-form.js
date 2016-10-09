@@ -14,11 +14,21 @@ $(function () {
         $optionPvz: $('#option-pvz'),
         $quantity: $('.jSaleQty'),
         $price: $('#price'),
+        $subtotal: $('#subtotal'),
         geoData: {
             cityName: '',
             cityId: null,
             x: null,
             y: null
+        },
+        deliveryType: null,
+        freeShippingCost: 2800.00,
+        price: 980.00,
+        product: {
+            length : 17.5,
+            width: 12,
+            height: 10,
+            weight: 0.2
         },
 
         init: function () {
@@ -27,9 +37,9 @@ $(function () {
             this.cityChangeOn();
             this.cityFocusOutOn();
             this.initYMaps();
-            this.changeQunatityOn();
             this.selectDeliveryOn();
             this.quantityChangeOn();
+            this.calculateDelivery();
         },
 
         initYMaps: function () {
@@ -202,33 +212,48 @@ $(function () {
                     case '0':
                         that.$map.hide();
                         that.$address.show();
+                        that.deliveryType = 0;
+                        that.calculateDelivery();
                         break;
                     case '1':
                         that.$map.hide();
                         that.$address.show();
+                        that.deliveryType = 1;
+                        that.calculateDelivery();
                         break;
                     case '2':
                         that.$map.show();
                         that.$address.hide();
+                        that.deliveryType = 2;
+                        that.calculateDelivery();
                         break;
                 }
             });
         },
 
         calculateDelivery: function () {
-            var quantity  = this.$quantity.val();
+            var quantity = parseInt(this.$quantity.val()),
+                orderPrice = quantity * this.price,
+                result = 0;
 
-            $.get('/jsale/cities.php', {calc: true, quantity: quantity}, function (result) {
-                console.log(123);
-            });
-        },
+            if (orderPrice >= this.freeShippingCost) {
+                this.$subtotal.html(orderPrice);
+                return;
+            }
 
-        changeQunatityOn: function() {
             var that = this;
 
-            this.$quantity.on('change', function() {
-                that.calculateDelivery();
-            });
+            // 0 - courier, 2 - pvz
+            if(this.geoData.cityId && ($.inArray(that.deliveryType, [0,2]) !== -1)) {
+                $.get('/jsale/cities.php', {calc: true, product: this.product, quantity: quantity, type: that.deliveryType, id: this.geoData.cityId}, function (data) {
+                    data = $.parseJSON(data);
+
+                    result = data.result.price;
+                    that.$subtotal.html(orderPrice + parseInt(result));
+                });
+            } else {
+                that.$subtotal.html(orderPrice);
+            }
         },
 
         quantityChangeOn: function () {
@@ -240,15 +265,17 @@ $(function () {
                 var quantity = that.$quantity.val();
 
                 if ($(this).hasClass('jSaleQtyMinus') && quantity > 1) {
-                    that.$price.html((parseFloat(that.$price.html()) - window.price).toFixed(2));
+                    that.$price.html((parseFloat(that.$price.html()) - that.price).toFixed(2));
                     quantity--;
                     that.$quantity.val(quantity);
                 }
                 if ($(this).hasClass('jSaleQtyPlus')) {
-                    that.$price.html((parseFloat(that.$price.html()) + window.price).toFixed(2));
+                    that.$price.html((parseFloat(that.$price.html()) + that.price).toFixed(2));
                     quantity++;
                     that.$quantity.val(quantity);
                 }
+
+                that.calculateDelivery();
             });
         },
 
@@ -261,7 +288,6 @@ $(function () {
             this.$optionCourier.prop('disabled', false);
             this.$optionPvz.prop('disabled', false);
         }
-
     };
     App.init();
 
