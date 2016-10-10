@@ -184,16 +184,18 @@
 				<div class="deliv_type_info">
 					<input type="radio" name="order_delivery" id="option-russianmail" checked value="1" />
 					<label>Почта России</label>
+					<p>5-7 дней. Подробности у опретора</p>
 				</div>
 				<div class="deliv_type_info">
 					<input type="radio" name="order_delivery" id="option-courier" value="0" />
 					<label>Курьерская доставка</label>
-					<p>400 р., 2-4 дня. Подробности у оператора.</p>
+					<p id="option-courier-info"></p>
 				</div>
 				<div class="deliv_type_info">
 					<input type="radio" name="order_delivery" id="option-pvz" value="2" />
 					<label>Пункты выдачи заказов</label>
 					<div id="map" class="pvz-map" style="display: none"></div>
+					<p id="option-pvz-info"></p>
 				</div>
 			</div>
 

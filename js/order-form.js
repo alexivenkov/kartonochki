@@ -15,6 +15,7 @@ $(function () {
         $quantity: $('.jSaleQty'),
         $price: $('#price'),
         $subtotal: $('#subtotal'),
+        $deliveryCost: $('input[name="delivery_cost"]'),
         geoData: {
             cityName: '',
             cityId: null,
@@ -25,7 +26,7 @@ $(function () {
         freeShippingCost: 2800.00,
         price: 980.00,
         product: {
-            length : 17.5,
+            length: 17.5,
             width: 12,
             height: 10,
             weight: 0.2
@@ -213,18 +214,25 @@ $(function () {
                         that.$map.hide();
                         that.$address.show();
                         that.deliveryType = 0;
+                        $('#option-pvz-info').html('');
+
                         that.calculateDelivery();
                         break;
                     case '1':
                         that.$map.hide();
                         that.$address.show();
                         that.deliveryType = 1;
+                        $('#option-courier-info').html('');
+                        $('#option-pvz-info').html('');
+
                         that.calculateDelivery();
                         break;
                     case '2':
                         that.$map.show();
                         that.$address.hide();
                         that.deliveryType = 2;
+                        $('#option-courier-info').html('');
+
                         that.calculateDelivery();
                         break;
                 }
@@ -244,12 +252,24 @@ $(function () {
             var that = this;
 
             // 0 - courier, 2 - pvz
-            if(this.geoData.cityId && ($.inArray(that.deliveryType, [0,2]) !== -1)) {
-                $.get('/jsale/cities.php', {calc: true, product: this.product, quantity: quantity, type: that.deliveryType, id: this.geoData.cityId}, function (data) {
+            if (this.geoData.cityId && ($.inArray(that.deliveryType, [0, 2]) !== -1)) {
+                $.get('/jsale/cities.php', {
+                    calc: true,
+                    product: this.product,
+                    quantity: quantity,
+                    type: that.deliveryType,
+                    id: this.geoData.cityId
+                }, function (data) {
                     data = $.parseJSON(data);
-
                     result = data.result.price;
+
+                    var daysDeclension = data.result.deliveryPeriodMax < 5 ? 'дня' : 'дней',
+                        $container = that.deliveryType === 0 ? $('#option-courier-info') : $('#option-pvz-info');
+
+                    that.$deliveryCost.val(data.result.price);
+
                     that.$subtotal.html(orderPrice + parseInt(result));
+                    $container.html('<strong>' + data.result.price + 'р., ' + data.result.deliveryPeriodMin + '-' + data.result.deliveryPeriodMax + ' ' + daysDeclension + '. Подробности у оператора.</strong>');
                 });
             } else {
                 that.$subtotal.html(orderPrice);
