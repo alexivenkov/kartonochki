@@ -1,4 +1,4 @@
-<script type="text/javascript" src="js/order-form.js"></script>
+<script type="text/javascript" src="js/order-form.js" xmlns="http://www.w3.org/1999/html"></script>
 <form action="<?= $config['sitelink'] . $config['dir'] ?>relay.php" method="post" class="jSaleForm" id="jsale_form_<?= $id_form ?>">
 	<? if (isset($message) && is_string($message)): ?>
 	<h6 class="jSaleMessage">
@@ -360,7 +360,7 @@
 	
 	<p class="submit">
 
-
+		<div id="default-delivery-cost" data-defaultDeliveryCost = "<?= $config['deliveries']['1']['cost'] ?>"></div>
 		<input type="submit" name="order_submit" value="Готово, оформляем!" class="jSaleSubmit jSaleButton jSaleLarge" <?= (isset($disabled) && $disabled === true) ? 'disabled="disabled"' : '' ?>>
 
 		<input type="hidden" name="order_spam" value="<?= $antispam ?>">
@@ -401,6 +401,7 @@
 		<? if (isset($disabled) && $disabled === true): ?><input type="hidden" name="disabled" value="disabled"><? endif; ?>
 		<? if (isset($message) && $message !== false && !is_array($message)): ?><input type="hidden" name="message" value="<?= $message ?>"><? endif; ?>
 		<input type="hidden" name="product_qty_type" value="<?= $product['qty_type']; ?>">
+		<input type="hidden" name="pvz-address" value="" />
 	</p>
 	
 	<center>Или просто позвоните по бесплатному телефону <span class="bold-phone">8 800 200 1599</span></center>

@@ -1,3 +1,4 @@
+//ALTER TABLE `custom` ADD COLUMN `pvz_address` TEXT NULL DEFAULT NULL AFTER `address`;
 $(function () {
     window.mapReady = false;
     window.price = parseFloat($('#price').html());
@@ -16,6 +17,7 @@ $(function () {
         $price: $('#price'),
         $subtotal: $('#subtotal'),
         $deliveryCost: $('input[name="delivery_cost"]'),
+        defaultDeliveryCost: parseInt($('#default-delivery-cost').data('defaultdeliverycost')),
         geoData: {
             cityName: '',
             cityId: null,
@@ -125,7 +127,7 @@ $(function () {
                             },
                             properties: {
                                 hintContent: result[index].Name,
-                                balloonContent: '<address><strong>' + result[index].Address + '</strong></address><br/>' +
+                                balloonContent: '<address><strong class="pvz-address">' + result[index].Address + '</strong></address><br/>' +
                                 result[index].Phone + '<br/>' +
                                 result[index].WorkTime
                             }
@@ -149,6 +151,9 @@ $(function () {
                     objectManager.objects.setObjectOptions(id, {
                         preset: 'islands#redIcon'
                     });
+
+                    var address = $('.pvz-address', objectManager.objects.getById(id).properties.balloonContent).html();
+                    $('input[name="pvz-address"]').val(address);
 
                     return oldId = id;
                 };
@@ -178,7 +183,7 @@ $(function () {
                         that.$map.empty();
                         window.mapReady = false;
                         that.processCity();
-
+                        that.calculateDelivery();
                         that.enableInputs();
                     });
                 }
@@ -241,8 +246,7 @@ $(function () {
 
         calculateDelivery: function () {
             var quantity = parseInt(this.$quantity.val()),
-                orderPrice = quantity * this.price,
-                result = 0;
+                orderPrice = quantity * this.price;
 
             if (orderPrice >= this.freeShippingCost) {
                 this.$subtotal.html(orderPrice);
@@ -261,7 +265,7 @@ $(function () {
                     id: this.geoData.cityId
                 }, function (data) {
                     data = $.parseJSON(data);
-                    result = data.result.price;
+                    var result = data.result.price;
 
                     var daysDeclension = data.result.deliveryPeriodMax < 5 ? 'дня' : 'дней',
                         $container = that.deliveryType === 0 ? $('#option-courier-info') : $('#option-pvz-info');
@@ -272,7 +276,8 @@ $(function () {
                     $container.html('<strong>' + data.result.price + 'р., ' + data.result.deliveryPeriodMin + '-' + data.result.deliveryPeriodMax + ' ' + daysDeclension + '. Подробности у оператора.</strong>');
                 });
             } else {
-                that.$subtotal.html(orderPrice);
+                that.$deliveryCost.val(that.defaultDeliveryCost);
+                that.$subtotal.html(orderPrice + that.defaultDeliveryCost);
             }
         },
 

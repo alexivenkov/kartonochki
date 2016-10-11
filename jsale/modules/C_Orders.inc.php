@@ -11,12 +11,12 @@ if (isset($new_order))
 	$date = date("Y-m-d H:i:s");
     $status = 0;
     $juridical = (isset($juridical)) ? $juridical : '';
-	$id_user = (isset($user['id_user'])) ? $user['id_user'] : '';
+	$id_user = (isset($user['id_user'])) ? $user['id_user'] : 0;
 	$yandex_payment_type = (isset($yandex_payment_type)) ? $yandex_payment_type : '';
 	$domain = $_SERVER['HTTP_REFERER'];
 
 	# Добавление заказа в БД
-	$id_order = $mOrders->CreateOrder($lastname, $name, $fathername, $email, $phone, $zip, $country, $region, $city, $address, $comment, $payment['type'], $juridical, $delivery['type'], $delivery['cost'], $date, $order_sum, $status, $id_user, $utm, $source, $product['form_config'], $_SERVER['REMOTE_ADDR'], $yandex_payment_type, $domain);
+	$id_order = $mOrders->CreateOrder($lastname, $name, $fathername, $email, $phone, $zip, $country, $region, $city, $address, $comment, $payment['type'], $juridical, $delivery['type'], $delivery['cost'], $date, $order_sum, $status, $id_user, $utm, $source, $product['form_config'], $_SERVER['REMOTE_ADDR'], $yandex_payment_type, $domain, $delivery['pvz-address']);
 	
 	# Логирование статуса
 	$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), 0, true);

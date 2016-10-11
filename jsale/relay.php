@@ -387,6 +387,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
 				array_push($products, $bonus_product);
 			}
 
+
+            $delivery['cost'] = $_POST['delivery_cost'];
+            $delivery['pvz-address'] = $_POST['pvz-address'];
+
 			# Подключение модуля работы с заказами (сохранение заказа в БД).
 			if ($config['database']['enabled'] === true && is_file(dirname(__FILE__) . '/modules/C_Orders.inc.php'))
 				include_once dirname(__FILE__) . '/modules/C_Orders.inc.php';

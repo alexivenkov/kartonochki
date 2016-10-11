@@ -131,10 +131,10 @@ class M_Orders
 	}
 
 	# Создание заказа
-	public function CreateOrder($lastName, $name, $fatherName, $email, $phone, $zip, $country, $region, $city, $address, $comment, $payment, $juridical = null, $delivery = null, $delivery_cost = 0, $date, $order_sum, $status, $id_user = 0,  $utm = '', $source = '', $conf = 0, $ip = '', $yandex_payment_type = '', $domain = '')
+	public function CreateOrder($lastName, $name, $fatherName, $email, $phone, $zip, $country, $region, $city, $address, $comment, $payment, $juridical = null, $delivery = null, $delivery_cost = 0, $date, $order_sum, $status, $id_user = 0,  $utm = '', $source = '', $conf = 0, $ip = '', $yandex_payment_type = '', $domain = '', $pvz_address = '')
 	{
 		# Проверка данных
-		if (!isset($name) || !isset($email) || !isset($phone) || !isset($address) || !isset($payment) || !isset($date) || !isset($order_sum))
+		if (!isset($name) || !isset($email) || !isset($phone) || !isset($address) || !isset($payment) || !isset($date) || !isset($order_sum) || !isset($pvz_address))
 			return false;
 			
         if (isset($juridical) && is_array($juridical))
@@ -168,6 +168,7 @@ class M_Orders
 		$obj['ip'] = $ip;
 		$obj['domain'] = $domain;
         $obj['manager_bonus'] =  $this->config['manager']['fix_bonus'];
+        $obj['pvz_address'] = $pvz_address;
 
 		return $this->msql->Insert('custom', $obj);
 	}
