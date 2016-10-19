@@ -33,8 +33,13 @@ $(function () {
             height: 10,
             weight: 0.2
         },
+        deliveryCost: null,
+        estimationTime: '',
 
         init: function () {
+            $('#option-courier-info').hide();
+            $('#option-pvz-info').hide();
+
             this.disableInputs();
             this.autocompleteOn();
             this.cityChangeOn();
@@ -216,27 +221,33 @@ $(function () {
             $('input[name=order_delivery]').on('click', function () {
                 switch ($(this).val()) {
                     case '0':
-                        that.$map.hide();
-                        that.$address.show();
                         that.deliveryType = 0;
-                        $('#option-pvz-info').html('');
+
+                        $('#option-courier-info').show();
+
+                        that.$map.hide();
+                        $('#option-russianmail-info').hide();
+                        $('#option-pvz-info').hide();
+                        that.$address.show();
 
                         that.calculateDelivery();
                         break;
                     case '1':
-                        that.$map.hide();
-                        that.$address.show();
                         that.deliveryType = 1;
-                        $('#option-courier-info').html('');
-                        $('#option-pvz-info').html('');
+                        $('#option-russianmail-info').show();
 
                         that.calculateDelivery();
+                        that.setDeliveryInfo($('#russianmail-info').children('.delivery-info'));
                         break;
                     case '2':
-                        that.$map.show();
-                        that.$address.hide();
                         that.deliveryType = 2;
-                        $('#option-courier-info').html('');
+
+                        that.$map.show();
+                        $('#option-pvz-info').show();
+
+                        that.$address.hide();
+                        $('#option-russianmail-info').hide();
+                        $('#option-courier-info').hide();
 
                         that.calculateDelivery();
                         break;
@@ -250,6 +261,7 @@ $(function () {
 
             if (orderPrice >= this.freeShippingCost) {
                 this.$subtotal.html(orderPrice);
+                $('#freeShipping').show();
                 return;
             }
 
@@ -279,6 +291,8 @@ $(function () {
                 that.$deliveryCost.val(that.defaultDeliveryCost);
                 that.$subtotal.html(orderPrice + that.defaultDeliveryCost);
             }
+
+            $('#freeShipping').hide();
         },
 
         quantityChangeOn: function () {
@@ -312,6 +326,10 @@ $(function () {
         enableInputs: function () {
             this.$optionCourier.prop('disabled', false);
             this.$optionPvz.prop('disabled', false);
+        },
+
+        setDeliveryInfo: function ($element) {
+            console.log($element);
         }
     };
     App.init();

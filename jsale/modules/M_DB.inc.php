@@ -589,7 +589,7 @@ class M_DB
 	}
 
     public function autocompleteCity($value) {
-        $query = "SELECT `id`, `city_name` FROM `geo_data` WHERE `city_name` LIKE '" . mysql_real_escape_string($value) . "%'";
+        $query = "SELECT `id`, `city_name` FROM `geo_data` WHERE `full_name` LIKE '" . mysql_real_escape_string($value) . "%'";
         $result = $this->msql->Select($query);
 
         return $result;

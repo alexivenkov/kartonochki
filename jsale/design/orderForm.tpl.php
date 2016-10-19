@@ -116,6 +116,7 @@
 		<? endif; ?>
 	</p>
 	<? endif; ?>
+	<h3 id="freeShipping" style="text-align: center; display: none;">Доставка бесплатно!</h3>
 	<? if ($config['form']['city']['enabled'] == true): ?>
 	<p class="float">
 		<label><?= $config['form']['city']['label'];?><? if ($config['form']['city']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label>
@@ -184,18 +185,35 @@
 				<div class="deliv_type_info">
 					<input type="radio" name="order_delivery" id="option-russianmail" checked value="1" />
 					<label>Почта России</label>
-					<p>5-7 дней. Подробности у опретора</p>
+					<div id="russianmail-info">
+						<p>Посылка 1 класса до ближайшего вам почтового отделения</p>
+						<div class="delivery-info">
+							<p>Стоимость доставки:<span class="delivery-price"></span><br/>
+							   Срок доставки:<span class="delviery-estimation"></span></p>
+						</div>
+					</div>
 				</div>
 				<div class="deliv_type_info">
 					<input type="radio" name="order_delivery" id="option-courier" value="0" />
 					<label>Курьерская доставка</label>
-					<p id="option-courier-info"></p>
+					<div id="courier-info">
+						<p>экспресс доставка домой или в офис</p>
+						<div class="delivery-info">
+							<p>Стоимость доставки:<span class="delivery-price"></span></p>
+							<p>Срок доставки:<span class="delviery-estimation"></span></p>
+						</div>
+					</div>
 				</div>
 				<div class="deliv_type_info">
 					<input type="radio" name="order_delivery" id="option-pvz" value="2" />
 					<label>Пункты выдачи заказов</label>
 					<div id="map" class="pvz-map" style="display: none"></div>
-					<p id="option-pvz-info"></p>
+					<div id="pvz-info">
+						<div class="delivery-info">
+							<p>Стоимость доставки:<span class="delivery-price"></span></p>
+							<p>Срок доставки:<span class="delviery-estimation"></span></p>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -355,12 +373,11 @@
 		Итого, с учетом доставки вам нужно будет оплатить <span class="itog-price" id="subtotal"><?= (isset($config['payments'][$payment_type]['rate'])) ? number_format($config['payments'][$payment_type]['rate'] * $order_sum, 2, '.', '') : $order_sum  ?></span> <?= (isset($config['payments'][$payment_type]['currency'])) ? $config['payments'][$payment_type]['currency'] : $config['currency'] ?>
 		</span> 
 		<span class="itog-light">Оплата при получении</span>
-	</p>
-	<? endif; ?>
-	
-	<p class="submit">
 
-		<div id="default-delivery-cost" data-defaultDeliveryCost = "<?= $config['deliveries']['1']['cost'] ?>"></div>
+	<? endif; ?>
+
+	<div id="default-delivery-cost" data-defaultDeliveryCost = "<?= $config['deliveries']['1']['cost'] ?>"></div>
+	<p class="submit">
 		<input type="submit" name="order_submit" value="Готово, оформляем!" class="jSaleSubmit jSaleButton jSaleLarge" <?= (isset($disabled) && $disabled === true) ? 'disabled="disabled"' : '' ?>>
 
 		<input type="hidden" name="order_spam" value="<?= $antispam ?>">
