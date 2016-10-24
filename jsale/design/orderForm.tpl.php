@@ -116,7 +116,6 @@
 		<? endif; ?>
 	</p>
 	<? endif; ?>
-	<h3 id="freeShipping" style="text-align: center; display: none;">Доставка бесплатно!</h3>
 	<? if ($config['form']['city']['enabled'] == true): ?>
 	<p class="float">
 		<label><?= $config['form']['city']['label'];?><? if ($config['form']['city']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label>
@@ -188,19 +187,15 @@
 					<div id="russianmail-info">
 						<p>Посылка 1 класса до ближайшего вам почтового отделения</p>
 						<div class="delivery-info">
-							<p>Стоимость доставки:<span class="delivery-price"></span><br/>
-							   Срок доставки:<span class="delviery-estimation"></span></p>
 						</div>
 					</div>
 				</div>
 				<div class="deliv_type_info">
 					<input type="radio" name="order_delivery" id="option-courier" value="0" />
 					<label>Курьерская доставка</label>
-					<div id="courier-info">
+					<div id="courier-info" style="display: none;">
 						<p>экспресс доставка домой или в офис</p>
 						<div class="delivery-info">
-							<p>Стоимость доставки:<span class="delivery-price"></span></p>
-							<p>Срок доставки:<span class="delviery-estimation"></span></p>
 						</div>
 					</div>
 				</div>
@@ -210,8 +205,6 @@
 					<div id="map" class="pvz-map" style="display: none"></div>
 					<div id="pvz-info">
 						<div class="delivery-info">
-							<p>Стоимость доставки:<span class="delivery-price"></span></p>
-							<p>Срок доставки:<span class="delviery-estimation"></span></p>
 						</div>
 					</div>
 				</div>

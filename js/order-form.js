@@ -1,4 +1,3 @@
-//ALTER TABLE `custom` ADD COLUMN `pvz_address` TEXT NULL DEFAULT NULL AFTER `address`;
 $(function () {
     window.mapReady = false;
     window.price = parseFloat($('#price').html());
@@ -17,14 +16,13 @@ $(function () {
         $price: $('#price'),
         $subtotal: $('#subtotal'),
         $deliveryCost: $('input[name="delivery_cost"]'),
-        defaultDeliveryCost: parseInt($('#default-delivery-cost').data('defaultdeliverycost')),
         geoData: {
             cityName: '',
             cityId: null,
             x: null,
             y: null
         },
-        deliveryType: null,
+        deliveryType: 1,
         freeShippingCost: 2800.00,
         price: 980.00,
         product: {
@@ -34,7 +32,7 @@ $(function () {
             weight: 0.2
         },
         deliveryCost: null,
-        estimationTime: '',
+        deliveryPeriod: '',
 
         init: function () {
             $('#option-courier-info').hide();
@@ -222,32 +220,37 @@ $(function () {
                 switch ($(this).val()) {
                     case '0':
                         that.deliveryType = 0;
+                        that.calculateDelivery();
 
-                        $('#option-courier-info').show();
+                        $('#courier-info').show();
+                        $('#russianmail-info').hide();
+                        $('#pvz-info').hide();
 
-                        that.$map.hide();
-                        $('#option-russianmail-info').hide();
-                        $('#option-pvz-info').hide();
                         that.$address.show();
+                        that.$map.hide();
 
                         that.calculateDelivery();
                         break;
                     case '1':
                         that.deliveryType = 1;
-                        $('#option-russianmail-info').show();
+
+                        $('#russianmail-info').show();
+                        $('#courier-info').hide();
+                        $('#pvz-info').hide();
+
+                        that.$address.show();
+                        that.$map.hide();
 
                         that.calculateDelivery();
-                        that.setDeliveryInfo($('#russianmail-info').children('.delivery-info'));
                         break;
                     case '2':
                         that.deliveryType = 2;
 
                         that.$map.show();
-                        $('#option-pvz-info').show();
-
+                        $('#pvz-info').show();
+                        $('#russianmail-info').hide();
+                        $('#courier-info')  .hide();
                         that.$address.hide();
-                        $('#option-russianmail-info').hide();
-                        $('#option-courier-info').hide();
 
                         that.calculateDelivery();
                         break;
@@ -256,14 +259,7 @@ $(function () {
         },
 
         calculateDelivery: function () {
-            var quantity = parseInt(this.$quantity.val()),
-                orderPrice = quantity * this.price;
-
-            if (orderPrice >= this.freeShippingCost) {
-                this.$subtotal.html(orderPrice);
-                $('#freeShipping').show();
-                return;
-            }
+            var quantity = parseInt(this.$quantity.val());
 
             var that = this;
 
@@ -277,22 +273,20 @@ $(function () {
                     id: this.geoData.cityId
                 }, function (data) {
                     data = $.parseJSON(data);
-                    var result = data.result.price;
 
-                    var daysDeclension = data.result.deliveryPeriodMax < 5 ? 'дня' : 'дней',
-                        $container = that.deliveryType === 0 ? $('#option-courier-info') : $('#option-pvz-info');
+                    that.deliveryCost = data.result.price;
+                    that.deliveryPeriod = data.result.deliveryPeriodMin + '-' + data.result.deliveryPeriodMax;
+                    that.deliveryPeriod += data.result.deliveryPeriodMax < 5 ? ' дня' : ' дней';
 
-                    that.$deliveryCost.val(data.result.price);
-
-                    that.$subtotal.html(orderPrice + parseInt(result));
-                    $container.html('<strong>' + data.result.price + 'р., ' + data.result.deliveryPeriodMin + '-' + data.result.deliveryPeriodMax + ' ' + daysDeclension + '. Подробности у оператора.</strong>');
+                    var $container = that.deliveryType === 0 ? $('#courier-info') : $('#pvz-info');
+                    that.renderTemplate($container);
                 });
             } else {
-                that.$deliveryCost.val(that.defaultDeliveryCost);
-                that.$subtotal.html(orderPrice + that.defaultDeliveryCost);
+                that.deliveryCost = 310;
+                that.deliveryPeriod = '5-7 дней';
+                var $container = $('#russianmail-info');
+                that.renderTemplate($container);
             }
-
-            $('#freeShipping').hide();
         },
 
         quantityChangeOn: function () {
@@ -313,7 +307,6 @@ $(function () {
                     quantity++;
                     that.$quantity.val(quantity);
                 }
-
                 that.calculateDelivery();
             });
         },
@@ -328,8 +321,12 @@ $(function () {
             this.$optionPvz.prop('disabled', false);
         },
 
-        setDeliveryInfo: function ($element) {
-            console.log($element);
+        renderTemplate: function ($container) {
+            var deliveryMessage = parseFloat(this.$price.html()) >= this.freeShippingCost ? '<strong>Бесплатная доставка</strong>' : 'Стоимость доставки: <strong>' + this.deliveryCost + ' рублей</strong>';
+            var $template = $('<p>' + deliveryMessage + '<br/>Срок доставки: <strong>' + this.deliveryPeriod + '</strong></p>');
+
+            $container.children('.delivery-info').html('');
+            $container.children('.delivery-info').append($template);
         }
     };
     App.init();
