@@ -1603,3 +1603,7 @@ textarea.w-select {
   width:480px;
   height:250px;
 }
+
+.tab-inactive {
+  color: #a29898 !important;
+}

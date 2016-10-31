@@ -206,10 +206,15 @@ $(function () {
         cityFocusOutOn: function () {
             var that = this;
 
-            that.$cityInput.blur(function () {
+            this.$cityInput.blur(function () {
+                that.$cityText.html($(this).val());
+                that.$cityValue.val($(this).val());
+
                 $(this).toggle();
                 that.$cityText.toggle();
                 that.$cityChange.toggle();
+
+                that.disableInputs();
             });
         },
 
@@ -312,11 +317,17 @@ $(function () {
         },
 
         disableInputs: function () {
+            this.$optionCourier.parent('.deliv_type_info').addClass('tab-inactive');
+            this.$optionPvz.parent('.deliv_type_info').addClass('tab-inactive');
+
             this.$optionCourier.prop('disabled', true);
-            this.$optionPvz.prop('disabled', true);
+            this.$optionPvz.prop('disabled', true).addClass('tab-inactive');
         },
 
         enableInputs: function () {
+            this.$optionCourier.parent('.deliv_type_info').removeClass('tab-inactive');
+            this.$optionPvz.parent('.deliv_type_info').removeClass('tab-inactive');
+
             this.$optionCourier.prop('disabled', false);
             this.$optionPvz.prop('disabled', false);
         },
