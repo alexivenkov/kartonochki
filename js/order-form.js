@@ -25,6 +25,7 @@ $(function () {
         deliveryType: 1,
         freeShippingCost: 2800.00,
         price: 980.00,
+        currentPrice: 980.00,
         product: {
             length: 17.5,
             width: 12,
@@ -225,7 +226,6 @@ $(function () {
                 switch ($(this).val()) {
                     case '0':
                         that.deliveryType = 0;
-                        that.calculateDelivery();
 
                         $('#courier-info').show();
                         $('#russianmail-info').hide();
@@ -279,18 +279,29 @@ $(function () {
                 }, function (data) {
                     data = $.parseJSON(data);
 
-                    that.deliveryCost = data.result.price;
+                    that.deliveryCost = parseInt(data.result.price);
                     that.deliveryPeriod = data.result.deliveryPeriodMin + '-' + data.result.deliveryPeriodMax;
                     that.deliveryPeriod += data.result.deliveryPeriodMax < 5 ? ' дня' : ' дней';
 
+                    if(that.currentPrice >= that.freeShippingCost) {
+                        that.deliveryCost = 0;
+                    }
+
                     var $container = that.deliveryType === 0 ? $('#courier-info') : $('#pvz-info');
                     that.renderTemplate($container);
+                    that.$subtotal.html((that.currentPrice + that.deliveryCost).toFixed(2));
                 });
             } else {
-                that.deliveryCost = 310;
+                if(that.currentPrice >= that.freeShippingCost) {
+                    that.deliveryCost = 0;
+                } else {
+                    that.deliveryCost = 310;
+                }
+
                 that.deliveryPeriod = '5-7 дней';
                 var $container = $('#russianmail-info');
                 that.renderTemplate($container);
+                that.$subtotal.html((that.currentPrice + that.deliveryCost).toFixed(2));
             }
         },
 
@@ -303,15 +314,18 @@ $(function () {
                 var quantity = that.$quantity.val();
 
                 if ($(this).hasClass('jSaleQtyMinus') && quantity > 1) {
-                    that.$price.html((parseFloat(that.$price.html()) - that.price).toFixed(2));
+                    that.currentPrice -= that.price;
+                    that.$price.html(that.currentPrice.toFixed(2));
                     quantity--;
                     that.$quantity.val(quantity);
                 }
                 if ($(this).hasClass('jSaleQtyPlus')) {
-                    that.$price.html((parseFloat(that.$price.html()) + that.price).toFixed(2));
+                    that.currentPrice += that.price;
+                    that.$price.html(that.currentPrice.toFixed(2));
                     quantity++;
                     that.$quantity.val(quantity);
                 }
+
                 that.calculateDelivery();
             });
         },
@@ -333,7 +347,7 @@ $(function () {
         },
 
         renderTemplate: function ($container) {
-            var deliveryMessage = parseFloat(this.$price.html()) >= this.freeShippingCost ? '<strong>Бесплатная доставка</strong>' : 'Стоимость доставки: <strong>' + this.deliveryCost + ' рублей</strong>';
+            var deliveryMessage = this.deliveryCost === 0 ? '<strong>Бесплатная доставка</strong>' : 'Стоимость доставки: <strong>' + this.deliveryCost + ' рублей</strong>';
             var $template = $('<p>' + deliveryMessage + '<br/>Срок доставки: <strong>' + this.deliveryPeriod + '</strong></p>');
 
             $container.children('.delivery-info').html('');
