@@ -16,6 +16,7 @@ $(function () {
         $price: $('#price'),
         $subtotal: $('#subtotal'),
         $deliveryCost: $('input[name="delivery_cost"]'),
+        $promo: $('.jSaleCode'),
         geoData: {
             cityName: '',
             cityId: null,
@@ -26,14 +27,14 @@ $(function () {
         freeShippingCost: 2800.00,
         price: 980.00,
         currentPrice: 980.00,
+        deliveryCost: 310,
+        deliveryPeriod: '',
         product: {
             length: 17.5,
             width: 12,
             height: 10,
             weight: 0.2
         },
-        deliveryCost: null,
-        deliveryPeriod: '',
 
         init: function () {
             $('#option-courier-info').hide();
@@ -47,6 +48,7 @@ $(function () {
             this.selectDeliveryOn();
             this.quantityChangeOn();
             this.calculateDelivery();
+            this.promoOn();
         },
 
         initYMaps: function () {
@@ -327,6 +329,24 @@ $(function () {
                 }
 
                 that.calculateDelivery();
+            });
+        },
+
+        promoOn: function() {
+            var that = this;
+
+            this.$promo.on('keyup', function() {
+                var promo = $(this).val();
+                $.get('/jsale/cities.php', {check_promo: true, promo: promo}, function(result) {
+                    result = $.parseJSON(result);
+
+                    if(result.result) {
+                        var pizdec = (that.deliveryCost + that.currentPrice) - (that.deliveryCost + that.currentPrice) / result.result;
+                        console.log(pizdec);
+                    } else {
+                        that.calculateDelivery();
+                    }
+                });
             });
         },
 

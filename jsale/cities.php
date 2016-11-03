@@ -61,4 +61,10 @@ if(isset($_GET['calc'])) {
     echo $api->calculateDeliveryCost($params);
 }
 
+if(isset($_GET['check_promo'])) {
+    $result = in_array($_GET['promo'], array_keys($config['codes']['table'])) ? $config['codes']['table'][$_GET['promo']] : false;
+
+    echo json_encode(compact('result'));
+}
+
 exit;
