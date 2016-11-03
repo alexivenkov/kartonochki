@@ -345,21 +345,10 @@
 	<? else: ?>
 		<input type="hidden" name="order_code" value="<?= ($config['partner']['codes']['auto'] === true && isset($_COOKIE['jsale_ref']) && empty($code)) ? $_COOKIE['jsale_ref'] : $code ?>" class="jSaleCode">
 	<? endif; ?>
-	
-	<? if (isset($discount) && $discount != 0): ?>
-		<span class="attention ">
-			Ура, получилось! Ваша скидка: <?= $discount;?> <?if ($config['discounts']['fixed'] === true):?><?= $config['currency'] ?><? else: ?>%<? endif; ?> <!--Ваша цена: <span id="subtotal"><?= (isset($config['payments'][$payment_type]['rate'])) ? number_format($config['payments'][$payment_type]['rate'], 2, '.', '') * $order_sum : number_format($order_sum, 2, '.', '');?></span> <?= (isset($config['payments'][$payment_type]['currency'])) ? $config['payments'][$payment_type]['currency'] : $config['currency'] ?>-->
-			
-		</span>
-		<span>
-		<hr>
-		<span class="itog-light">
-		<? if (isset($config['deliveries']['99']['enabled']) && $config['deliveries']['99']['enabled'] === true): ?><span id="delivery_cost"></span><br><?endif;?>
-		Итого, с учетом доставки вам нужно будет оплатить <span class="itog-price" id="subtotal"><?= (isset($config['payments'][$payment_type]['rate'])) ? number_format($config['payments'][$payment_type]['rate'] * $order_sum, 2, '.', '') : $order_sum  ?></span> <?= (isset($config['payments'][$payment_type]['currency'])) ? $config['payments'][$payment_type]['currency'] : $config['currency'] ?>
-		</span> 
-		<span class="itog-light">Оплата при получении</span>
-		</span>
-	<? else: ?>
+	<span class="attention order-promo">
+	</span>
+
+
 		<hr>
 		<span class="itog-light">
 		<? if (isset($config['deliveries']['99']['enabled']) && $config['deliveries']['99']['enabled'] === true): ?><span id="delivery_cost"></span><br><?endif;?>
@@ -367,7 +356,6 @@
 		</span> 
 		<span class="itog-light">Оплата при получении</span>
 
-	<? endif; ?>
 
 	<div id="default-delivery-cost" data-defaultDeliveryCost = "<?= $config['deliveries']['1']['cost'] ?>"></div>
 	<p class="submit">
@@ -376,6 +364,7 @@
 		<input type="hidden" name="order_spam" value="<?= $antispam ?>">
 		<input type="hidden" name="order_nospam" value="">
 		<input type="hidden" name="hash" value="<?= $product['hash']; ?>">
+		<input type="hidden" id="sum" name="sum" value="">
 
 		<input type="hidden" name="product_id" value="<?= (isset($product['id_product'])) ? $product['id_product'] : '' ?>">
 		<input type="hidden" name="product_code" value="<?= $product['code']; ?>">

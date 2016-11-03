@@ -247,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
     #               $delivery['cost'] *= floatval(str_replace(',', '.', $product['param3']));
 
     # Вычисляем сумму заказа
-    $order_sum = number_format($product['subtotal'] + $delivery['cost'], 2, '.', '');
+    $order_sum = $_POST['sum'];
 
     # Предупреждение, если остатков не достаточно
     if ($config['store']['enabled'] === true && $config['store']['notice']['enabled'] === true || $config['store']['enabled'] === true && $config['store']['decrease_order'] === true)
@@ -454,7 +454,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
                 $name_from = $config['email']['answerName'];
             }
 
-            # Отправка письма.
+            /*# Отправка письма.
             if ( !$mEmail->SendEmail($config['email']['receiver'], $email_from, $emailSubjectAdminOrder, $adminContent, $name_from, $config['encoding']) )
             {
                 $message = $config['form']['notSent'];
@@ -465,7 +465,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
                 if (!empty($email))
                     $mEmail->SendEmail($email, $config['email']['answer'], $emailSubjectOrder, $customerContent, $config['email']['answerName'], $config['encoding']);
                 $sent = 1;
-            }
+            }*/
         }
     }
 }

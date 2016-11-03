@@ -1607,3 +1607,7 @@ textarea.w-select {
 .tab-inactive {
   color: #a29898 !important;
 }
+
+.order-promo {
+  display: none;
+}
