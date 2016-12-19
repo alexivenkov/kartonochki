@@ -12,26 +12,19 @@
 <p><strong>Телефон:</strong> <?= $phone ?></p>
 <? endif; ?>
 <? if ($zip || $region || $city || $address): ?>
-<p><strong>Адрес:</strong><br>
+<p><strong>Адрес:</strong>
 <? if ($zip): ?><?= $zip ?><? endif; ?>
 <? if ($region): ?> <?= $region ?><? endif; ?>
 <? if ($city): ?> <?= $city ?><? endif; ?>
 <? if ($address): ?> <?= $address ?><? endif; ?></p>
 <? endif; ?>
 <? if ($comment): ?>
-<p><strong>Комментарий:</strong><br><?= $comment ?></p>
+<p><strong>Комментарий:</strong><?= $comment ?></p>
 <? endif; ?>
 <h3>Данные заказа:</h3>
 
 <? foreach ($order_items as $order_item): ?>
-<p>Наименование: <?= $order_item['title'] ?>
-<? if ($order_item['param1'] || $order_item['param2'] || $order_item['param3']): ?> (
-	<? if ($order_item['param1']): ?> <?= $order_item['param1'] ?> <? endif; ?>
-	<? if ($order_item['param2']): ?> <?= $order_item['param2'] ?> <? endif; ?>
-	<? if ($order_item['param3']): ?> <?= $order_item['param3'] ?><? endif; ?>
-)<? endif; ?>
-<br>
-Код товара: <?= $order_item['code'] ?><br>
+<p>Наименование: <?= $order_item['title'] ?><br>
 Цена: <? if ($order_item['price'] != 0): ?><?= number_format($order_item['price'], 2, '.', '') ?> <?= $config['currency'] ?><? else: ?>Бонус!<? endif; ?><br>
 Количество: <?= $order_item['qty'] ?> <?= $order_item['unit'] ?><br>
 <? if (isset($order_item['discount']) && $order_item['discount'] != 0): ?>Ваша скидка: <?= number_format($order_item['discount'], 2, '.', '') ?> <? if ($config['discounts']['fixed'] === true): ?><?= $config['currency'] ?><? else: ?>%<? endif; ?><br><? endif;?>
@@ -39,7 +32,6 @@
 <? endforeach;?>
 
 <p><strong>Сумма заказа:</strong> <?= number_format($order_sum - $delivery['cost'], 2, '.', '') ?> <?= $config['currency'] ?></p>
-<p><strong>Форма оплаты:</strong> <?= $payment['title'] ?> – <?= $payment['info'] ?><? if ($yandex_payment_type): ?> - <?= $config['payments']['yandex_eshop']['types'][$yandex_payment_type] ?><? endif; ?></p>
 <? if (isset($payment['link'])): ?>
 <p><strong>Оплатить заказ:</strong> <a href="<?= $payment['link'] ?>" title="Оплатить онлайн" target="_blank">к оплате</a></p>
 <? endif; ?>

@@ -12,9 +12,10 @@
 {{qty}}
 {{name}}
 {{lastname}}
-{{sitelink}}
+{{sitelink}} - Ссылка на сайт
 {{currency}}
-{{track_id}}
+{{track_id}} - Номер отправление
+{{track_place}} - Место прибытия
 */?>
 <? if ($sms_type == 'order2admin'): ?>
 Новый заказ №{{id_order}} на сумму {{sum}} {{currency}}. {{phone}}
@@ -33,7 +34,9 @@
 <? elseif ($sms_type == 'trackSent2customer'): ?>
 Здравствуйте! Ваш заказ №{{id_order}} отправлен, трек-номер {{track_id}}. Отследить отправление вы можете здесь: www.pochta.ru/tracking <!--129 символов-->
 <? elseif ($sms_type == 'trackDelivered2customer'): ?>
-Здравствуйте! Ваш заказ доставлен в почтовое отделение {{zip}}. Номер отправления {{track_id}}. Сумма {{sum}} {{currency}} Не забудьте паспорт <!--~135 символов-->
+Здравствуйте! Ваш заказ доставлен в почтовое отделение {{track_place}}. Номер отправления {{track_id}}. Сумма {{sum}} {{currency}} Не забудьте паспорт <!--~135 символов-->
+<? elseif ($sms_type == 'sdekSent2customer'): ?>
+Здравствуйте! Ваш заказ №{{id_order}} отправлен, трек-номер {{track_id}}. Отслеживание: www.edostavka.ru/track Телефон службы доставки 8-800-250-0405
 <? else: ?>
 false
 <? endif; ?>

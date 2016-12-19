@@ -7,17 +7,42 @@
 	<? else: ?>
 	<? endif; ?>
 	
-	<!-- Скрипт подмены текста в зависимости от геолокации -->
-	<div class="free-delivery-wrapper">
-		<div class="free-delivery-text">&gt;&gt;&gt; При заказе от 2800 р. доставка бесплатно! &lt;&lt;&lt;</div>
-	</div>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter35873340 = new Ya.Metrika({
+                    id:35873340,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/35873340" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 <div id="u44" class="text" style="visibility: visible;">
           <p><span style="color: #ff9000;">1. Выберите количество</span></p>
         </div>
 
 	<div class="topimage">
-		<img class="imgorder" src="http://test.kartonochki.ru/images/orderpage_img.jpg">
+		<img class="imgorder" src="http://kartonochki.ru/images/orderpage_img.jpg">
 	</div>
 	<div class="toptext">
 		<span><?= $product['title']; ?></span><br>
@@ -385,7 +410,7 @@
 		
 		<input type="hidden" name="order_step" value="<?= $order_step ?>">
 		
-		<input type="hidden" name="delivery_cost" value="<?= (isset($delivery_type) && $config['deliveries'][$delivery_type]['cost'] != '') ? $config['deliveries'][$delivery_type]['cost'] : 0 ?>">
+		<input type="hidden" name="delivery_cost" value="310">
 		<input type="hidden" name="free_delivery" value="<?= (isset($config['payments'][$payment_type]['free_delivery']) && $config['payments'][$payment_type]['free_delivery'] === true) ? 'true' : 'false' ?>">
 		<input type="hidden" name="id_form" value="<?= $id_form ?>">
 		
@@ -565,3 +590,9 @@ jQuery('.jSalePhone').mask('<?= (isset($country) && isset($config['form']['count
 	<? endforeach; ?>
 <? endif; ?>
 </script>
+
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'N9GcaaMqnK';var d=document;var w=window;function l(){
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->

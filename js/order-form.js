@@ -26,10 +26,10 @@ $(function () {
         deliveryPeriod: '',
         deliveryType: 1,
         freeShippingCost: 2800.00,
-        price: 980.00,
-        currentPrice: 980.00,
+        price: 790.00,
+        currentPrice: 790.00,
         deliveryCost: 310.00,
-        total: 980.00 + 310.00,
+        total: 790.00 + 310.00,
         quantity: 1,
         product: {
             length: 17.5,
@@ -246,6 +246,7 @@ $(function () {
                         that.$address.show();
                         that.$map.hide();
 
+                        that.$deliveryCost.val(310.00);
                         that.initializeData();
                         break;
                     case '1':
@@ -320,7 +321,6 @@ $(function () {
                     .then(function () {
                         this.$subtotal.html(this.total.toFixed(2));
                     });
-                ;
             } else if (this.geoData.cityId && ($.inArray(this.deliveryType, [0, 2]) !== -1)) {
                 var $container = this.deliveryType === 0 ? $('#courier-info') : $('#pvz-info');
 
@@ -354,6 +354,7 @@ $(function () {
             result = $.parseJSON(result);
 
             this.deliveryCost = parseInt(result.result.price);
+            this.$deliveryCost.val(this.deliveryCost);
             this.deliveryPeriod = result.result.deliveryPeriodMin + '-' + result.result.deliveryPeriodMax;
             this.deliveryPeriod += result.result.deliveryPeriodMax < 5 ? ' дня' : ' дней';
 

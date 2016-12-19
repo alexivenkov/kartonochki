@@ -1,3 +1,4 @@
+<?php include_once dirname(__FILE__) . '/jsale/modules/C_Partner.inc.php'; ?>
 <!DOCTYPE html>
 <!-- Товарищи, ведите себя прилично!-->
 <!-- Хотите такой же хороший продающий сайт - пишите на databot2015(at)yandex.ru -->
@@ -16,17 +17,58 @@
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/kartonochki.styles.css">
+  <link rel="stylesheet" type="text/css" href="herd-script/herd-styles.css">
   <script type="text/javascript" src="js/modernizr.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon_32x32.gif">
   <link rel="apple-touch-icon" href="images/favicon_256.gif">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="herd-script/herd-script.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#herd').herd();
+        });
+    </script>
+  <script charset="utf-8" src="http://api-maps.yandex.ru/1.1/index.xml?key=ABXRX1cBAAAA7dJyOgIA5RMaKGCI6BB7tjHYw4pQJFXsqXgAAAAAAAAAAADWQmsR13U8cKIvt2coqEQPm044fQ==" type="text/javascript"></script>     
+	
+	<!--<script type="text/javascript">
+	$(document).ready(function() {    
+	if (YMaps.location.city != '') {
+		$('.city').html(YMaps.location.city);
+		var youCity = (YMaps.location.city);
+		if (youCity === "Уфа"){
+			$('.delivery-hero').text(' и бесплатной доставкой в г. ');
+        $('.delivery-sec-add-line').text('Бесплатная курьерская доставка по Уфе');
+    }
+    else {
+        $('.delivery-hero').text(' и доставкой в г. ');
+    	 }	
+	}
+	});
+	</script>-->
 </head>
 <body>
+<!--
+  <div class="navbar-sticky" data-ix="navbar-display-none">
+    <div class="w-container top-bar-wrapper">
+      <div class="w-nav navbar-style" data-animation="default" data-collapse="medium" data-contain="1" data-duration="400">
+        <div class="w-container menu-wrapper">
+          <div class="w-nav-button menu-icon">
+            <div class="w-icon-nav-menu"></div>
+          </div>
+        <nav class="w-nav-menu nav-menu-block" role="navigation"><a class="w-nav-link nav-link" href="#about">Что это?</a><a class="w-nav-link nav-link" href="#apps">Приложения</a><a class="w-nav-link nav-link" href="#compat">Совместимость</a><a class="w-nav-link nav-link" href="#delivery">Оплата и доставка</a><a class="w-nav-link nav-link" href="#faq">Вопросы и ответы</a><a class="w-nav-link nav-link nav-buy" href="#offer-mid-start" id="cta-top">Купить по акции</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+ <div id="herd"></div>
  <nav class="w-section nav-sec" data-ix="back-to-top" id="navbar">
     <div>
       <div class="w-container top-bar-wrapper">
         <div class="w-clearfix phone-mobile-show-wrapper">
+          <h4 class="messenger-phone"><img class="messengers_icons" src="images/messengers_icons_small.png"></span> +7 987 604-58-40</h4>
           <h6 class="top-phone mobile-portrait-phone">8 800 200 5095</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script>
         </div>
         <div class="top-bar-logo-wrapper">
@@ -36,19 +78,20 @@
         <div class="top-bar-text-wrapper">
           <p class="w-hidden-medium w-hidden-small w-hidden-tiny top-annotation">Бюджетные шлемы виртуальной реальности для смартфонов от производителя</p>
           <div class="top-bar-phone-hidden">
-            <h6 class="top-phone mobile">8 800 200 5095</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script>
+          <h4 class="messenger-phone"><img class="messengers_icons" src="images/messengers_icons_small.png"></span> +7 987 604-58-40</h4>
+          <h6 class="top-phone mobile">8 800 200 5095</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script>
           </div>
         </div>
         <div class="w-clearfix w-hidden-medium w-hidden-small w-hidden-tiny top-bar-phone-wrapper">
-          <h6 class="top-phone">8 800 200 1599</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script><div class="free-call-annotation">Звонок по РФ бесплатный</div>
-
+        <h4 class="messenger-phone"><img class="messengers_icons" src="images/messengers_icons_small.png"></span> +7 987 604-58-40</h4>
+        <h6 class="top-phone">8 800 200 1599</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script><div class="free-call-annotation">Звонок по РФ бесплатный</div>
         </div>
         <div class="w-nav navbar-style" data-animation="default" data-collapse="medium" data-contain="1" data-duration="400">
           <div class="w-container menu-wrapper">
             <div class="w-nav-button menu-icon">
               <div class="w-icon-nav-menu"></div>
             </div>
-            <nav class="w-nav-menu nav-menu-block" role="navigation"><a class="w-nav-link nav-link" href="#about">Что это?</a><a class="w-nav-link nav-link" href="#apps">Приложения</a><a class="w-nav-link nav-link" href="#compat">Совместимость</a><a class="w-nav-link nav-link" href="#delivery">Оплата и доставка</a><a class="w-nav-link nav-link" href="#faq">Вопросы и ответы</a><a class="w-nav-link nav-link nav-buy" href="order-page.html" id="cta-top">Купить по акции</a>
+            <nav class="w-nav-menu nav-menu-block" role="navigation"><a class="w-nav-link nav-link" href="#about">Что это?</a><a class="w-nav-link nav-link" href="#apps">Приложения</a><a class="w-nav-link nav-link" href="#compat">Совместимость</a><a class="w-nav-link nav-link" href="#delivery">Оплата и доставка</a><a class="w-nav-link nav-link" href="#faq">Вопросы и ответы</a><a class="w-nav-link nav-link nav-buy" href="#final-offer" id="cta-top">Купить по акции</a>
             </nav>
           </div>
         </div>
@@ -57,7 +100,9 @@
   </nav>
   <header class="w-section hero-bg" data-ix="sticky-navbar-scroll" id="hero">
     <div class="w-container">
-        <h1 class="h1-title" data-ix="title-animation">Акция! <span class="multi">Google Cardboard&nbsp;2.0+</span> со&nbsp;скидкой&nbsp;30%</span></br><span class="delivery-hero">   </span><span class="city">   </span></h1>
+      <!--<h1 class="h1-title" data-ix="title-animation"><span class="multi">Google Cardboard&nbsp;2.0+</span> со&nbsp;скидкой&nbsp;30%</span></br><span class="delivery-hero">   </span><span class="city">   </span></h1>-->
+      <!--<h1 class="h1-title" data-ix="title-animation"><span class="multi">Самые необычные очки виртуальной реальности Google Cardboard&nbsp;2.0+</span> со&nbsp;скидкой&nbsp;30%</span></h1>-->
+      <h1 class="h1-title" data-ix="title-animation"><span class="multi">Самые необычные очки виртуальной реальности Google Cardboard&nbsp;2.0+</span> со&nbsp;скидкой&nbsp;30%</span></h1>
       <div class="h1-title-annotation" data-ix="subtitle-animation">Превратите свой смартфон в полноценный шлем виртуальной реальности в любое время, в любом месте! 100% эмоций или вернем деньги :)</div>
       <div class="w-row">
         <div class="w-col w-col-7 w-col-medium-6"><img class="hit-ribbon" data-ix="hit-ribbon-animation" src="images/hit_label.png">
@@ -92,7 +137,7 @@
         </div>
       </div>
       <div class="w-clearfix hero-cta-div"><a class="w-button cta-button more-button" href="#feats" id="know-more-button">Узнать подробнее</a>
-        <div class="cta-annotation">Уже <span class="cta-annotation bold">2 146</span> человека оценили виртуальную
+        <div class="cta-annotation">Уже <span class="cta-annotation bold">2147</span> человек оценили виртуальную
           <br>реальность с Google Cardboard 2.0+ от Kartonochki.ru</div>
       </div>
     </div>
@@ -317,12 +362,13 @@
           <p class="paragraph plain">Нажимать на экран во время сеанса теперь можно с помощью инновационной кнопки. Работает на 100% смартфонах &nbsp;с емкостными экранами</p>
         </div>
       </div>
+	  <!--<a class="w-button comaptibility-button" data-ix="smart-list-open" href="#">Список совместимых смартфонов</a>-->
 	  <script src="jsale/JS.php?feedback&form_type=feedback" type="text/javascript"></script>
     </div>
   </section>
   <div class="w-section product-feats-sec" id="feats">
     <div class="w-container product-feats-wrapper-bg">
-      <h1 class="h2">Чем наш Google Cardboard 2.0+ лучше,&nbsp;<br>чем первая версия?</h1>
+      <h1 class="h2">Чем наш Google Cardboard 2.0+ лучше,&nbsp;<br>чем первая и вторая версии?</h1>
       <div class="subheading">Google Cardboard 2.0+ лишен всех недостатков первой версии и приправлен парой убойных фишек как на дорогих шлемах</div>
       <div class="product-feats-wrapper">
         <div class="product-feat-item"><img class="product-feat-image" src="images/4_dYS1PYS.jpg">
@@ -400,8 +446,8 @@
               <div class="paragraph">высококачественный микрогофрокартон</div>
             </li>
           </ul>
-          <div class="old-price">1390 р.</div>
-          <div class="new-price">980 <span class="rub">р.</span>
+          <div class="old-price">1130 р.</div>
+          <div class="new-price">790 <span class="rub">р.</span>
           </div>
         </div>
       </div>
@@ -427,7 +473,7 @@
         <div class="w-col w-col-6 offer-gift-col">
           <div class="w-clearfix offer-gift" data-ix="gift-card-animation-2"><img class="offer-gift-img" src="images/bonus_stickers.jpg">
             <div class="gift-annotation-wrapper">
-              <div class="subheading gift-card">2 клевых наклейки
+              <div class="subheading gift-card">3 клевых наклейки
                 <br>на корпус</div>
               <div class="w-clearfix gift-card-price-wrapper">
                 <div class="w-clearfix new-price small-new-price"><span class="old-price small-old-price">130 р.</span> 0 <span class="rub-small">р.</span>
@@ -442,7 +488,7 @@
   </div>
   <div class="w-section offer-sec-end" id="offer-mid-cta">
     <div class="w-container"><img class="sec-arrow" src="images/sec_arrow_02.png">
-      <h1 class="h2 red-offer">АКЦИЯ ДЕЙСТВУЕТ&nbsp;до <a class="offer-date" href="#">10.09.2016</a>!<br><span class="free"></span></h1>
+      <h1 class="h2 red-offer">АКЦИЯ ДЕЙСТВУЕТ&nbsp;до <a class="offer-date" href="#">29.11.2016</a>!<br><span class="free"></span></h1>
       <div class="action-annotation">Успейте заказать улучшенный Google Cardboard 2.0+ со скидкой 30% и получить 2 гарантированных подарка!</div>
       <div class="action-items-wrapper">
         <div class="action-image-wrapper"><img src="images/gift_gc.png">
@@ -459,7 +505,7 @@
         </div>
       </div>
       <div class="offer-end-price">
-        <div class="new-price big-new-price"><span class="rub">всего</span> 980 <span class="rub big-rub">р.</span>
+        <div class="new-price big-new-price"><span class="rub">всего</span> 790 <span class="rub big-rub">р.</span>
         </div>
       </div>
       <div>
@@ -497,7 +543,7 @@
   </div>
   <!-- <div class="w-section testimonials-sec">
     <div class="w-container">
-      <h1 class="h2">2 146 наших покупателя уже штурмуют виртуальную реальность. Вы с нами?</h1>
+      <h1 class="h2">2147 наших покупателя уже штурмуют виртуальную реальность. Вы с нами?</h1>
       <div class="subheading">Несколько правдивых отзывов от самых ответственных из вас. Обычно люди ленятся писать отзывы, поэтому каждый из них — наша гордость! Спасибо, ребята!</div>
       <div class="w-slider testimonial-slider" data-animation="slide" data-duration="500" data-infinite="1">
         <div class="w-slider-mask testimonial-slider-mask">
@@ -622,7 +668,7 @@
       <div class="faq-accordion-wrapper">
         <div class="faq-accordion-section" data-ix="accordion">
           <div class="faq-accordion-heading">
-            <h3 class="h4 accordion-h4">Подойдет ли мой смарфтон к Google Cardboard 2.0+?</h3>
+            <h3 class="h4 accordion-h4">Подойдет ли мой смартфон к Google Cardboard 2.0+?</h3>
           </div>
           <div class="faq-accordion-text-section" data-ix="accordion">
             <p class="paragraph accordion-paragraph">Для корректной работы ваш смартфон должен иметь экран диагональю от 4 до 6 дюймов, а также иметь гироскоп. Вы можете проверить наличие гироскопа на сайте производителя либо скачав и запустив любое приложение ВР — если сцена будет реагировать на изменение положения смартфона, то все в порядке.&nbsp;
@@ -742,7 +788,7 @@
               </li>
             </ul>
             <div class="memes-bottom-div">
-              <p class="memes-bottom-text green">Цена: 980 рублей + доставка.
+              <p class="memes-bottom-text green">Цена: 790 рублей + доставка.
                 <br>Как пару раз зайти в Макдональдс</p>
             </div>
           </div>
@@ -750,7 +796,7 @@
       </div>
     </div>
   </div>
-  <div class="w-section final-offer-sec" id="final-offer">
+  <!--<div class="w-section final-offer-sec" id="final-offer">
     <div class="w-container final-offer-wrapper">
       <div class="w-hidden-small w-hidden-tiny discount-lable final-offer-discount-label">Скидка 30%</div>
       <div class="w-hidden-small w-hidden-tiny gift-lable final-offer-label">2 подарка</div>
@@ -760,11 +806,11 @@
         <div class="w-form">
           <form data-redirect="/order-page.html" id="node-5">
             <h1 class="h2 final-offer-title">Успейте получить<br>Google Cardboard 2.0+&nbsp;<br>со скидкой 30%</h1>
-            <h1 class="h2 red-offer final-red-date">акция действует до <a class="offer-date red-date-wrapper" href="#">10.09.2016</a><br><span class="free"></span></h1>
+            <h1 class="h2 red-offer final-red-date">акция действует до <a class="offer-date red-date-wrapper" href="#">29.11.2016</a><br><span class="free"></span></h1>
             <div class="hero-info">
               <ul class="w-list-unstyled">
                 <li class="list-item">
-                  <h4 class="h4 final-offer-list-h4">Гарнитура виртуальной реальности Google Cardboard 2.0+&nbsp;<span class="profit-label">(выгода 430 р.)</span></h4>
+                  <h4 class="h4 final-offer-list-h4">Гарнитура виртуальной реальности Google Cardboard 2.0+&nbsp;<span class="profit-label">(выгода 340 р.)</span></h4>
                 </li>
                 <li class="list-item">
                   <h4 class="h4 final-offer-list-h4">Крепление для головы hands-free <span class="profit-label">(выгода 170 р.)</span></h4>
@@ -778,10 +824,10 @@
               </ul>
             </div>
             <div class="offer-end-price">
-              <div class="new-price big-new-price final-offer-price"><span class="old-price">1390 р.</span>980 <span class="rub big-rub">р.</span>
+              <div class="new-price big-new-price final-offer-price"><span class="old-price">1130 р.</span>790 <span class="rub big-rub">р.</span>
               </div>
             </div><a class="w-button cta-button final-offer" data-ix="cta-pulse-2" href="order-page.html">Получить Google Cardboard 2.0+</a>
-            <div class="cta-annotation final-offer-proof">Уже <span class="cta-annotation bold">2 146</span> человека оценили виртуальную
+            <div class="cta-annotation final-offer-proof">Уже <span class="cta-annotation bold">2147</span> человек оценили виртуальную
               <br>реальность с Google Cardboard 2.0+ от Kartonochki.ru</div>
           </form>
           <div class="w-form-done">
@@ -793,14 +839,13 @@
         </div>
       </div>
     </div>
-  </div>
-<!--  
-<section class="w-section final-offer-lp-form-sec" id="final-offer">
+  </div>-->
+  <section class="w-section final-offer-lp-form-sec" id="final-offer"> <!-- вот так выгл -->
     <div class="final-offer-form-wrapper">
       <div class="w-container">
         <div class="w-clearfix final-offer-form-sum-col">
           <h1 class="h2 final-offer-title">Успейте получить<br>Google Cardboard 2.0+&nbsp;со скидкой 30%</h1>
-          <h1 class="h2 red-offer final-red-date">акция действует до <a class="offer-date red-date-wrapper" href="#">10.09.2016</a><br><span class="free"></span></h1>
+          <h1 class="h2 red-offer final-red-date">акция действует до <a class="offer-date red-date-wrapper" href="#">29.11.2016</a><br><span class="free"></span></h1>
           <div class="hero-info final-offer-form">
             <div class="hero-info offer-list">
               <ul class="w-list-unstyled">
@@ -820,23 +865,15 @@
             </div>
           </div>
           <div class="offer-end-price">
-            <div class="new-price big-new-price final-offer-price"><span class="old-price">1390 р.</span>980 <span class="rub big-rub">р.</span>
+            <div class="new-price big-new-price final-offer-price"><span class="old-price">1130 р.</span>790 <span class="rub big-rub">р.</span>
             </div>
           </div><img class="w-hidden-medium w-hidden-small w-hidden-tiny final-offer-arrow" src="images/arrow_left.png">
         </div>
         <div class="final-offer-form-cta-col"><img class="form-top-img" src="images/img_offer_girl.jpg">
           <div class="form-area" data-ix="form-pulse">
             <div class="w-form">
-              <form class="w-clearfix" data-name="Form 01 - Final CTA" data-redirect="/thanks.html" id="wf-form-Form-01---Final-CTA" name="wf-form-Form-01---Final-CTA">
-                <h4 class="h4 final-offer-form-title"><span class="form-title-black">Заполните эту форму, </span><br>чтобы получить Google Cardboard 2.0+&nbsp;<br>и 2 подарка с общей выгодой 730 р.</h4>
-                <label class="form-input-title" for="form-name">ФИО: *</label>
-                <input class="w-input form-input" data-name="ФИО" id="form-name" maxlength="256" placeholder="Фамилия Имя Отчество" required="required" type="text">
-                <label class="form-input-title" for="form-phone">Телефон: *</label>
-                <input class="w-input form-input" data-name="Телефон" id="form-phone" maxlength="256" placeholder="8 917 123-45-67" required="required" type="text">
-                <label class="form-input-title" for="form-email">Email:</label>
-                <input class="w-input form-input" data-name="Email" id="form-email" maxlength="256" name="Email" placeholder="Ваш надежный Email" type="email">
-                <input class="w-button cta-button final-offer-cta" data-wait="Секундочку..." id="cta-form-bottom" type="submit" value="Получить Google Cardboard 2.0" wait="Секундочку...">
-                <div class="cta-annotation">Уже <span class="cta-annotation bold">2 146</span> человека оценили виртуальную
+          <script type="text/javascript" src="jsale/JS.php?product=gc2.0+&form_type=form&upsell=1&upsell=page"></script>
+                <div class="cta-annotation">Уже <span class="cta-annotation bold">2147</span> человек оценили виртуальную
                   <br>реальность с Google Cardboard 2.0 от Kartonochki.ru</div>
               </form>
               <div class="w-form-done success-message-wrapper">
@@ -851,7 +888,7 @@
         </div>
       </div>
     </div>
-  </section>-->
+  </section>
   <div class="w-section footer-sec">
     <div class="w-container footer-wrapper">
       <div class="footer-logo-wrapper"><img class="footer-logo" src="images/bottom_logo.png">
@@ -863,7 +900,7 @@
       </div>
       <div class="footer-phone-wrapper">
         <h6 class="footer-phone">8 800 200 1599</h6>
-        <div class="footer-phone-annotation">Звонок по РФ бесплатный</div><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script>
+        <div class="footer-phone-annotation">Звонок по РФ бесплатный</div><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script><!--<a class="w-button callback-button" data-ix="callback-open-button" href="#" id="callback-link-bottom">Перезвоните мне</a>-->
       </div>
     </div>
     <div class="w-container">
@@ -872,6 +909,8 @@
           <br>Производство и продажа гарнитур виртуальной реальности оптом и в розницу.</div>
         <div class="footer-dev-text-wrapper">
           <div class="footer-dev-link">
+            <div class="footer-dev-link">Разработка сайта и маркетинг <a class="text-link developer" href="#">Brawwwo.ru</a>
+            </div>
           </div>
         </div>
       </div>
@@ -889,25 +928,63 @@
       </div>
     </div>
   </div><a class="w-button w-hidden-medium w-hidden-small w-hidden-tiny back-top-button" data-ix="back-to-top" href="#navbar" id="back-to-top">Наверх</a>
+  <div class="modal-smart-list-wrapper" data-ix="smart-list-interaction">
+    <div class="w-clearfix modal-smart-list-window"><a class="w-button popup-window-close" data-ix="smart-list-close" href="#">Закрыть</a>
+      <div class="modal-smart-window-img"><img src="images/compatibility_img.jpg">
+      </div>
+      <div class="modal-smart-window-form-div">
+        <h3 class="popup-window-heading">Не уверены, подходит ли ваш смартфон?</h3>
+        <div class="popup-window-annotation">Чтобы не получить кота в мешке, убедитесь, что ваш смартфон совместим с устройством. Оставьте заявку и наш менеджер проконсультирует вас&nbsp;</div>
+        <div class="w-form">
+          <form data-name="Smartphone check" id="wf-form-Smartphone-check" name="wf-form-Smartphone-check">
+            <label class="form-input-title" for="node-3">Ваше имя:</label>
+            <input class="w-input form-input modal-form" data-name="Имя" id="node-3" maxlength="256" placeholder="Ваше имя" type="text">
+            <label class="form-input-title" for="node-4">Телефон:</label>
+            <input class="w-input form-input modal-form" data-name="Телефон" id="node-4" maxlength="256" placeholder="8 917 123-45-67" required="required" type="text">
+            <input class="w-button comaptibility-button modal" data-wait="Секундочку..." type="submit" value="Проверить смартфон" wait="Секундочку...">
+          </form>
+          <div class="w-form-done success-message-wrapper callback">
+            <p class="form-success-message-text callback-message">Ура, получилось!
+              <br>Ожидайте звонка оператора в течение
+              <br>5-15 минут</p>
+          </div>
+          <div class="w-form-fail">
+            <p>Oops! Something went wrong while submitting the form</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-callback-wrapper" data-ix="callback-interaction">
+    <div class="w-clearfix modal-callback-window"><a class="w-button popup-window-close" data-ix="callback-close" href="#">Закрыть</a>
+      <div class="modal-callback-window-img"><img src="images/old_stereoscope.jpg">
+      </div>
+      <div class="modal-callback-form-div">
+        <h1 class="popup-window-heading">Заказ звонка</h1>
+        <div class="popup-window-annotation">Оставьте заявку и наш менеджер перезвонит вам и проконсультирует по всем вопросам</div>
+        <div class="w-form">
+          <form data-name="Callback form" id="wf-form-Callback-form" name="wf-form-Callback-form">
+            <label class="form-input-title" for="node">Ваше имя:</label>
+            <input class="w-input form-input modal-form" data-name="Имя" id="node" maxlength="256" placeholder="Ваше имя" type="text">
+            <label class="form-input-title" for="node-2">Телефон:</label>
+            <input class="w-input form-input modal-form" data-name="Телефон" id="node-2" maxlength="256" placeholder="8 917 123-45-67" required="required" type="text">
+            <input class="w-button comaptibility-button modal" data-wait="Секундочку..." type="submit" value="Перезвоните мне" wait="Секундочку...">
+          </form>
+          <div class="w-form-done success-message-wrapper callback">
+            <p class="form-success-message-text callback-message">Ура, получилось!
+              <br>Ожидайте звонка оператора в течение
+              <br>5-15 минут.&nbsp;</p>
+          </div>
+          <div class="w-form-fail">
+            <p>Oops! Something went wrong while submitting the form</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
   <script type="text/javascript" src="js/jquery.cookie.js"></script>  
   <script type="text/javascript" src="js/utm_multi_vid.js"></script> 
   <script type="text/javascript" src="js/kartonochki.js"></script>
-  <script charset="utf-8" src="http://api-maps.yandex.ru/1.1/index.xml?key=ABXRX1cBAAAA7dJyOgIA5RMaKGCI6BB7tjHYw4pQJFXsqXgAAAAAAAAAAADWQmsR13U8cKIvt2coqEQPm044fQ==" type="text/javascript"></script>     
-	<script type="text/javascript">
-	$(document).ready(function() {    
-	if (YMaps.location.city != '') {
-		$('.city').html(YMaps.location.city);
-		var youCity = (YMaps.location.city);
-		if (youCity === "Уфа"){
-			$('.delivery-hero').text(' и бесплатной доставкой в г. ');
-        $('.delivery-sec-add-line').text('Бесплатная курьерская доставка по Уфе');
-    }
-    else {
-        $('.delivery-hero').text(' и доставкой в г. ');
-     }
-}
-});
-</script>-->
 
 <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->  
     
@@ -940,5 +1017,12 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/35873340" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'N9GcaaMqnK';var d=document;var w=window;function l(){
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
+
 </body>
 </html>

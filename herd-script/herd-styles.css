@@ -1,0 +1,51 @@
+.herd-container {
+    position: fixed;
+    z-index: 9999;
+    width: 320px;
+    padding: 5px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.herd-container .herd-box {
+    padding: 5px;
+}
+
+.herd-container .herd-box .herd-image {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    background: url("/herd-script/assets/order.png");
+}
+
+.herd-container .herd-box .herd-content {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+    width: 235px;
+}
+
+.herd-position-top-left {
+    top: 15px;
+    left: 15px;
+}
+
+.herd-position-top-right {
+    top: 15px;
+    right: 15px;
+}
+
+.herd-position-bottom-left {
+    bottom: 15px;
+    left: 15px;
+}
+
+.herd-position-bottom-right {
+    bottom: 15px;
+    right: 15px;
+}

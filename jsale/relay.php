@@ -261,21 +261,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
     if ($_POST['action'] == 'send')
     {
         # Валидация данных
-        $validate = $mEmail->ValidateForm($email, $name, $lastname, $fathername, $phone, $zip, $country, $region, $city, $address, $product['qty'], $config);
+        if($template !== 2) {
+            $validate = $mEmail->ValidateForm($email, $name, $lastname, $fathername, $phone, $zip, $country, $region, $city, $address, $product['qty'], $config);
+        }
 
         # Валидация дополнительных полей
-        if ($validate === false && isset($adds))
+        if (isset($validate) && $validate === false && isset($adds))
             $validate = $mEmail->ValidateAddForm($adds, $config);
 
         # Валидация дополнительных полей товара
-        if (!$validate && isset($param_validate))
+        if (isset($validate) && !$validate && isset($param_validate))
             $validate = $param_validate;
 
         if (!$spam)
         {
             $message = $config['form']['isSpam'];
         }
-        elseif ($validate)
+        elseif (isset($validate) && $validate)
         {
             $message = $validate;
         }
@@ -390,7 +392,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
             }
 
             $delivery['cost'] = $_POST['delivery_cost'];
-            $delivery['pvz-address'] = $_POST['pvz-address'];
+            $delivery['pvz-address'] = isset($_POST['pvz-address']) ? $_POST['pvz-address'] : '';
 
             # Подключение модуля работы с заказами (сохранение заказа в БД).
             if ($config['database']['enabled'] === true && is_file(dirname(__FILE__) . '/modules/C_Orders.inc.php'))
@@ -440,6 +442,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
 
             # Подготовка сообщения к отправке.
             $adminContent = $mEmail->PrepareOrder($id_order, $email, $lastname, $name, $fathername, $phone, $zip, $country, $region, $city, $address, $comment, $products, $order_sum, $payment, $yandex_payment_type, $delivery, $hash, $hash2, $config, $partner, 'true', $product['form_config']);
+
             $customerContent = $mEmail->PrepareOrder($id_order, $email, $lastname, $name, $fathername, $phone, $zip, $country, $region, $city, $address, $comment, $products, $order_sum, $payment, $yandex_payment_type, $delivery, $hash, $hash2, $config, $partner, false, $product['form_config']);
 
             # Подстановка почтового адреса и имени
@@ -454,7 +457,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
                 $name_from = $config['email']['answerName'];
             }
 
-            /*# Отправка письма.
+            # Отправка письма.
             if ( !$mEmail->SendEmail($config['email']['receiver'], $email_from, $emailSubjectAdminOrder, $adminContent, $name_from, $config['encoding']) )
             {
                 $message = $config['form']['notSent'];
@@ -465,7 +468,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($sent))
                 if (!empty($email))
                     $mEmail->SendEmail($email, $config['email']['answer'], $emailSubjectOrder, $customerContent, $config['email']['answerName'], $config['encoding']);
                 $sent = 1;
-            }*/
+            }
         }
     }
 }

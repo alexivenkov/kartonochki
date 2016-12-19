@@ -18,6 +18,7 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="css/kartonochki.styles.css">
   <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon_32x32.gif">
   <link rel="apple-touch-icon" href="images/favicon_256.gif">
   <script src="https://cdn.optimizely.com/js/5309840156.js"></script>
@@ -29,89 +30,91 @@
     <div>
       <div class="w-container top-bar-wrapper">
         <div class="w-clearfix phone-mobile-show-wrapper">
-          <h6 class="top-phone mobile-portrait-phone">8 800 200 5095</h6><a class="custom-link" data-ix="callback-open-button" href="#">Перезвоните мне</a>
+          <h4 class="messenger-phone"><img class="messengers_icons" src="images/messengers_icons_small.png"></span> +7 987 604-58-40</h4>
+          <h6 class="top-phone mobile-portrait-phone">8 800 200 5095</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script>
         </div>
         <div class="top-bar-logo-wrapper">
-          <a class="w-inline-block w-clearfix top-logo-block" href="#navbar"><img class="top-logo" src="images/toplogox2.png">
+          <a class="w-inline-block w-clearfix top-logo-block" href="index.html"><img class="top-logo" src="images/toplogox2.png">
           </a>
         </div>
         <div class="top-bar-text-wrapper">
           <p class="w-hidden-medium w-hidden-small w-hidden-tiny top-annotation">Бюджетные шлемы виртуальной реальности для смартфонов от производителя</p>
           <div class="top-bar-phone-hidden">
-            <h6 class="top-phone mobile">8 800 200 5095</h6><a class="custom-link mobile-callback-link" data-ix="callback-open-button" href="#">Перезвоните мне</a>
+          <h4 class="messenger-phone"><img class="messengers_icons" src="images/messengers_icons_small.png"></span> +7 987 604-58-40</h4>
+          <h6 class="top-phone mobile">8 800 200 5095</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script>
           </div>
         </div>
         <div class="w-clearfix w-hidden-medium w-hidden-small w-hidden-tiny top-bar-phone-wrapper">
-          <h6 class="top-phone">8 800 200 1599</h6><a class="custom-link" data-ix="callback-open-button" href="#">Перезвоните мне</a>
+        <h4 class="messenger-phone"><img class="messengers_icons" src="images/messengers_icons_small.png"></span> +7 987 604-58-40</h4>
+        <h6 class="top-phone">8 800 200 1599</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script><div class="free-call-annotation">Звонок по РФ бесплатный</div>
         </div>
-        <div class="w-nav w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny navbar-style hidden" data-animation="default" data-collapse="medium" data-contain="1" data-duration="400">
+        <div class="w-nav navbar-style" data-animation="default" data-collapse="medium" data-contain="1" data-duration="400">
           <div class="w-container menu-wrapper">
             <div class="w-nav-button menu-icon">
               <div class="w-icon-nav-menu"></div>
             </div>
-            <nav class="w-nav-menu nav-menu-block" role="navigation"><a class="w-nav-link nav-link" href="#about">Что это?</a><a class="w-nav-link nav-link" href="#apps">Приложения</a><a class="w-nav-link nav-link" href="#compat">Совместимость</a><a class="w-nav-link nav-link" href="#delivery">Оплата и доставка</a><a class="w-nav-link nav-link" href="#faq">Вопросы и ответы</a><a class="w-nav-link nav-link nav-buy" href="#final-offer">Купить по акции</a>
+            <nav class="w-nav-menu nav-menu-block" role="navigation"><a class="w-nav-link nav-link" href="#about">Что это?</a><a class="w-nav-link nav-link" href="#apps">Приложения</a><a class="w-nav-link nav-link" href="#compat">Совместимость</a><a class="w-nav-link nav-link" href="#delivery">Оплата и доставка</a><a class="w-nav-link nav-link" href="#faq">Вопросы и ответы</a><a class="w-nav-link nav-link nav-buy" href="order-page.html" id="cta-top">Купить по акции</a>
             </nav>
           </div>
         </div>
       </div>
     </div>
   </nav>
-  <div class="last-offer-sec">
-<div class="w-container">
+  <div class="w-section last-offer-sec">
+    <div class="w-container">
       <h1 class="h2">Дарим дополнительную скидку 10%<br>за ответ на вопрос</h1>
       <div class="subheading survey">Раз вы пришли сюда, значит наше предложение вас чем-то не устроило. Что-то мы сделали не так. Пожалуйста, помогите нам понять, что именно, и мы подарим вам дополнительную скидку в 10%.</div>
-	  <script src="jsale/JS.php?feedback&form_type=form" type="text/javascript"></script>
-		<!--<div>
+      <div>
         <div class="w-form">
-          <form data-name="Form 04 - Survey" data-redirect="/thanks" id="wf-form-Form-04---Survey" name="wf-form-Form-04---Survey">
+          <form data-name="Form 04 - Survey" data-redirect="/thanks.html" id="wf-form-Form-04---Survey" name="wf-form-Form-04---Survey">
             <div class="questions-wrapper">
               <h1 class="h4">Что же вас не устроило в нашем предложении?</h1>
               <div class="w-row">
-                <div class="sad-cats-col w-col w-col-3 w-col-small-6"><img class="sad-cat" src="images/sad_cat_01.jpg">
-                  <div class="w-clearfix w-radio">
+                <div class="w-col w-col-3 w-col-small-6 sad-cats-col"><img class="sad-cat" src="images/sad_cat_01.jpg">
+                  <div class="w-radio w-clearfix">
                     <input class="w-radio-input" data-name="Survey" id="1. High too high" name="Survey" required="required" type="radio" value="1. High too high">
-                    <label class="radio-button-label w-form-label" for="1. High too high">Не устроила наша цена и бонусы?</label>
+                    <label class="w-form-label radio-button-label" for="1. High too high">Не устроила наша цена и бонусы?</label>
                   </div>
                   <div class="radio-button-annotation">Вы считаете, что наша цена слишком высокая</div>
                 </div>
-                <div class="sad-cats-col w-col w-col-3 w-col-small-6"><img class="sad-cat" src="images/sad_cat_03.jpg">
-                  <div class="w-clearfix w-radio">
+                <div class="w-col w-col-3 w-col-small-6 sad-cats-col"><img class="sad-cat" src="images/sad_cat_03.jpg">
+                  <div class="w-radio w-clearfix">
                     <input class="w-radio-input" data-name="Survey" id="2. Smartphone didn&#39;t match" name="Survey" required="required" type="radio" value="2. Smartphone didn&#39;t match">
-                    <label class="radio-button-label w-form-label" for="2. Smartphone didn&#39;t match">Ваш смартфон не поддерживает ВР?</label>
+                    <label class="w-form-label radio-button-label" for="2. Smartphone didn&#39;t match">Ваш смартфон не поддерживает ВР?</label>
                   </div>
                   <div class="radio-button-annotation">Ваш смартфон не соответствует минимальным требованиям</div>
                 </div>
-                <div class="sad-cats-col w-col w-col-3 w-col-small-6"><img class="sad-cat" src="images/sad_cat_02.jpg">
-                  <div class="w-clearfix w-radio">
+                <div class="w-col w-col-3 w-col-small-6 sad-cats-col"><img class="sad-cat" src="images/sad_cat_02.jpg">
+                  <div class="w-radio w-clearfix">
                     <input class="w-radio-input" data-name="Survey" id="3. I didn&#39;t understand" name="Survey" required="required" type="radio" value="3. I didn&#39;t understand">
-                    <label class="radio-button-label w-form-label" for="3. I didn&#39;t understand">Непонятно предложение?</label>
+                    <label class="w-form-label radio-button-label" for="3. I didn&#39;t understand">Непонятно предложение?</label>
                   </div>
                   <div class="radio-button-annotation">Все слишком мудрено и сложно, ничего непонятно</div>
                 </div>
-                <div class="sad-cats-col w-col w-col-3 w-col-small-6"><img class="sad-cat" src="images/sad_cat_04.jpg">
-                  <div class="other-reason w-clearfix">
-                    <div class="w-clearfix w-radio">
+                <div class="w-col w-col-3 w-col-small-6 sad-cats-col"><img class="sad-cat" src="images/sad_cat_04.jpg">
+                  <div class="w-clearfix other-reason">
+                    <div class="w-radio w-clearfix">
                       <input class="w-radio-input" data-name="Survey" id="4. Other reason" name="Survey" required="required" type="radio" value="4. Other reason">
-                      <label class="radio-button-label w-form-label" for="4. Other reason">Другая причина</label>
+                      <label class="w-form-label radio-button-label" for="4. Other reason">Другая причина</label>
                     </div>
-                    <textarea class="form-input plain-text-input w-input" data-name="Другая причина" id="node-3" maxlength="5000" placeholder="В чем же дело?"></textarea>
+                    <textarea class="w-input form-input plain-text-input" data-name="Другая причина" id="node-3" maxlength="5000" placeholder="В чем же дело?"></textarea>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="survey-form-img w-clearfix"><img src="images/img_cardboard_box.jpg"><img class="last-offer-price-tag" src="images/price_tag_10.png" width="135">
+            <div class="w-clearfix survey-form-img"><img src="images/img_cardboard_box.jpg"><img class="last-offer-price-tag" src="images/price_tag_10.png" width="135">
               <div class="new-price small-new-price"><span class="old-price small-old-price">960 р.</span> 860&nbsp;<span class="rub-small">р.</span>
               </div>
             </div>
-            <div class="survey-contact-form w-clearfix">
+            <div class="w-clearfix survey-contact-form">
               <label class="form-input-title" for="node-4">Ваше имя:</label>
-              <input class="form-input w-input" data-name="Имя" id="node-4" maxlength="256" placeholder="Введите ваше имя" required="required" type="text">
+              <!--<input class="w-input form-input" data-name="Имя" id="node-4" maxlength="256" placeholder="Введите ваше имя" required="required" type="text">
               <label class="form-input-title" for="node-5">Телефон:</label>
-              <input class="form-input w-input" data-name="Телефон" id="node-5" maxlength="256" placeholder="8 917 123-45-67" required="required" type="text">
-              <input class="comaptibility-button vote w-button" data-wait="Секундочку..." type="submit" value="Ответить и получить скидку 10%" wait="Секундочку...">
+              <input class="w-input form-input" data-name="Телефон" id="node-5" maxlength="256" placeholder="8 917 123-45-67" required="required" type="text">-->
+              <a class="w-button comaptibility-button vote" onclick="yaCounter35873340.reachGoal('RetargetSuccess'); return true;" data-wait="Секундочку..." type="submit" href="order-page-discount.html"> Ответить и получить скидку 10%</a>
             </div>
           </form>
-          <div class="success-message-wrapper survey-sent w-form-done"><img src="images/happy_cat.jpg">
+          <div class="w-form-done success-message-wrapper survey-sent"><img src="images/happy_cat.jpg">
             <p class="form-success-message-text survey-success">Спасибо за ответ!&nbsp;
               <br>Ваша скидка активирована. Ожидайте звонка менеджера в ближайшее время</p>
           </div>
@@ -120,7 +123,7 @@
           </div>
         </div>
       </div>
-    </div>-->
+    </div>
   </div>
   <div class="w-section footer-sec">
     <div class="w-container footer-wrapper">
@@ -215,5 +218,12 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/35873340" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'N9GcaaMqnK';var d=document;var w=window;function l(){
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
+
 </body>
 </html>

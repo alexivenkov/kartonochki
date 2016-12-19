@@ -34,6 +34,19 @@ h6 {
   text-align: right;
 }
 
+.messenger-phone {
+  margin-bottom: 0px;
+  font-family: Proximanova, sans-serif;
+  font-size: 16px;
+  text-align: right;
+}
+.messenger-phone.mobile-portrait-phone {
+  margin-bottom: 0px;
+  font-family: Proximanova, sans-serif;
+  font-size: 16px;
+  float: left;
+}
+
 .custom-link {
   margin-bottom: 10px;
   float: right;
@@ -4188,6 +4201,10 @@ html.w-mod-js *[data-ix="navbar-display-none"] {
     color: #50b91c;
     text-align: center;
   }
+  .messenger-phone {
+    font-family: Proximanova, sans-serif;
+    float: right;
+  }
 }
 
 @font-face {
@@ -4214,3 +4231,4 @@ html.w-mod-js *[data-ix="navbar-display-none"] {
   font-weight: 400;
   font-style: normal;
 }
+

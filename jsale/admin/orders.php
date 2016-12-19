@@ -54,7 +54,7 @@ include_once dirname(__FILE__) . '/_menu.php';
 
 # Подключение необходимых модулей
 include_once dirname(__FILE__) . '/../modules/M_Orders.inc.php';
-$mOrders = M_Orders::Instance($config);
+$mOrders = M_Orders::Instance();
 
 # Определение текущей страницы
 if (isset($_GET['page']))
@@ -72,6 +72,10 @@ $status = (isset($_GET['status']) && $_GET['status'] != 'all') ? intval($_GET['s
 # Определение тега для фильтра
 $tag = (isset($_GET['tag'])) ? $_GET['tag'] : 'all';
 $order_tags = explode(',', $tag);
+$domain = (isset($_GET['domain'])) ? $_GET['domain'] : 'all';
+$order_domains = explode(',', $domain);
+#var_dump($order_tags);
+#var_dump($order_domains);
 
 # Сохранение прошлой и текущей страницы
 if ($_SERVER['REQUEST_METHOD'] != 'POST')
@@ -192,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 							$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), $config['statuses']['refund'][0]);
 						}
 						# Отправлено
-						elseif (isset($order['status']) && in_array($order['status'], array(1, 2)) && !array_intersect($config['statuses']['success'], $statuses) && !in_array(1, $statuses) && !in_array(2, $statuses))
+						elseif (isset($order['status']) && in_array($order['status'], array(0, 1)) && !array_intersect($config['statuses']['success'], $statuses) && !array_intersect($config['delivered']['success'], $statuses) && !array_intersect($config['refund']['success'], $statuses) && !array_intersect(array(1, 2), $statuses))
 						{
 							$mDB->ChangeStatusByID('custom', $id_order, 2);
 							$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), 2);
@@ -273,7 +277,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 								$statuses = array();
 								foreach ($orders_statuses as $status)
 									$statuses[] = $status['status'];
-
+							
 								# Вручение
 								if (in_array('Вручение', $track_types) && !array_intersect($config['statuses']['success'], $statuses) && !array_intersect($config['statuses']['refund'], $statuses))
 								{
@@ -281,7 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 									$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), $config['statuses']['success'][0]);
 								}
 								# Доставлено
-								elseif (in_array('Прибыло в место вручения', $track_operations) /*$track_status == 'Прибыло в место вручения'*/ && !in_array($config['statuses']['delivered'][0], $statuses))
+								elseif (in_array('Прибыло в место вручения', $track_operations) /*$track_status == 'Прибыло в место вручения'*/ && !array_intersect($config['statuses']['delivered'], $statuses))
 								{
 									$mDB->ChangeStatusByID('custom', $id_order, $config['statuses']['delivered'][0]);
 									$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), $config['statuses']['delivered'][0]);
@@ -308,7 +312,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 									$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), $config['statuses']['refund'][0]);
 								}
 								# Отправлено
-								elseif (isset($order['status']) && in_array($order['status'], array(1, 2)) && !array_intersect($config['statuses']['success'], $statuses) && !in_array(1, $statuses) && !in_array(2, $statuses))
+								elseif (isset($order['status']) && in_array($order['status'], array(0, 1)) && !array_intersect($config['statuses']['success'], $statuses) && !array_intersect($config['delivered']['success'], $statuses) && !array_intersect($config['refund']['success'], $statuses) && !array_intersect(array(1, 2), $statuses))
 								{
 									$mDB->ChangeStatusByID('custom', $id_order, 2);
 									$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), 2);
@@ -799,7 +803,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $order_sum = number_format($order_sum, 2, '.', '');
 		
 		# Редактирование данных заказа - оригинальная настройка
-        if (!$mOrders->EditOrder($id_order,
+		        if (!$mOrders->EditOrder($id_order,
             $_POST['order_lastname'],
             $_POST['order_name'],
             $_POST['order_fathername'],
@@ -821,7 +825,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             $_POST['order_admin_comment'],
             $order_payment_ym,
             $_POST['order_manager'],
-            (float) $_POST['manager_bonus'])
+            (float) $_POST['manager_bonus'],
+            $_POST['pvz_address'])
         ) {
             die('<p>Данные не были сохранены. Проверьте корректность заполнения полей.</p>');
         }
@@ -912,7 +917,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 						$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), $config['statuses']['success'][0]);
 					}
 					# Доставлено
-					elseif (in_array('Прибыло в место вручения', $track_operations) /*$track_status == 'Прибыло в место вручения'*/ && !array_intersect($config['statuses']['delivered'], $statuses))
+					elseif (in_array('Прибыло в место вручения', $track_operations) /*$track_status == 'Прибыло в место вручения'*/ && !in_array($config['statuses']['delivered'][0], $statuses))
 					{
 						$mDB->ChangeStatusByID('custom', $id_order, $config['statuses']['delivered'][0]);
 						$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), $config['statuses']['delivered'][0]);
@@ -939,7 +944,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 						$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), $config['statuses']['refund'][0]);
 					}
 					# Отправлено
-					elseif (in_array($_POST['order_status'], array(0, 1)) && !array_intersect($config['statuses']['success'], $statuses) && !array_intersect($config['statuses']['refund'], $statuses) && !array_intersect($config['statuses']['delivered'], $statuses) && !in_array(2, $statuses))
+					elseif (isset($order['status']) && in_array($order['status'], array(0, 1)) && !array_intersect($config['statuses']['success'], $statuses) && !array_intersect($config['delivered']['success'], $statuses) && !array_intersect($config['refund']['success'], $statuses) && !array_intersect(array(1, 2), $statuses))
 					{
 						$mDB->ChangeStatusByID('custom', $id_order, 2);
 						$mDB->SaveStatus($id_order, date('Y-m-d H:i:s'), 2);
@@ -987,9 +992,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			include_once dirname(__FILE__) . '/../modules/C_SmartResponder.inc.php';
 		
 		# Подключение модуля отправки SMS уведомления
-		if (is_file(dirname(__FILE__) . '/../modules/C_SMS.inc.php') && $config['sms']['enabled'] === true && isset($_POST['send_sms']))
+		if (is_file(dirname(__FILE__) . '/../modules/C_SMS.inc.php') && $config['sms']['enabled'] === true)
 		{
-			if ($config['sms']['status2customer'] === true)
+			if ($config['sms']['sdekSent2customer']['enabled'] === true)
+			{
+				if ($_POST['order_status'] == $config['statuses']['sent'][0] && $_POST['order_delivery'] == $config['sms']['sdekSent2customer']['delivery'] && !empty($_POST['order_track']))
+				{
+					# Отправка SMS
+					$sms_type = 'sdekSent2customer';
+					$phone = $_POST['order_phone'];
+					include dirname(__FILE__) . '/../modules/C_SMS.inc.php';
+				}
+			}
+			
+			if ($config['sms']['status2customer'] === true && isset($_POST['send_sms']))
 			{
 				# Выбор заказа и его элементов
 				$order = $mDB->GetItemById('custom', $id_order);
@@ -1114,10 +1130,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	# Обновление тегов
 	if (isset($_POST['status']))
 	{
-		if (isset($_POST['tag']))
+		if (isset($_POST['tag']) || isset($_POST['domain']))
 		{
-			$tags = implode(',', $_POST['tag']);
-			header('Location: ' . $config['sitelink'] . $config['dir'] . 'admin/orders.php?status=' . $_POST['status'] . '&tag=' . $tags);
+			$tags = (isset($_POST['tag']) && !empty($_POST['tag'])) ? ((is_array($_POST['tag'])) ? implode(',', $_POST['tag']) : $_POST['tag']) : '';
+			$domains = (isset($_POST['domain']) && !empty($_POST['domain'])) ? ((is_array($_POST['domain'])) ? implode(',', $_POST['domain']) : $_POST['domain']) : '';
+			header('Location: ' . $config['sitelink'] . $config['dir'] . 'admin/orders.php?status=' . $_POST['status'] . '&tag=' . $tags . '&domain=' . $domains);
 		}
 		else
 			header('Location: ' . $config['sitelink'] . $config['dir'] . 'admin/orders.php?status=' . $_POST['status']);
