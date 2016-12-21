@@ -14,7 +14,6 @@
   <meta property="og:title" content="Order page">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Webflow">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="js/autocomplete/autocomplete.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -26,11 +25,12 @@
   <script type="text/javascript" src="js/autocomplete/jquery.autocomplete.min.js"></script>
 </head>
 <body>
-  <nav class="w-section nav-sec" data-ix="back-to-top" id="Navbar">
+ <nav class="w-section nav-sec" data-ix="back-to-top" id="navbar">
     <div>
       <div class="w-container top-bar-wrapper">
         <div class="w-clearfix phone-mobile-show-wrapper">
-          <h6 class="top-phone mobile-portrait-phone">8 800 200 5095</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script><!--<a class="custom-link" data-ix="callback-open-button" href="#">Перезвоните мне</a>-->
+          <h4 class="messenger-phone"><img class="messengers_icons" src="images/messengers_icons_small.png"></span> +7 987 604-58-40</h4>
+          <h6 class="top-phone mobile-portrait-phone">8 800 200 5095</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script>
         </div>
         <div class="top-bar-logo-wrapper">
           <a class="w-inline-block w-clearfix top-logo-block" href="index.html"><img class="top-logo" src="images/toplogox2.png">
@@ -39,19 +39,19 @@
         <div class="top-bar-text-wrapper">
           <p class="w-hidden-medium w-hidden-small w-hidden-tiny top-annotation">Бюджетные шлемы виртуальной реальности для смартфонов от производителя</p>
           <div class="top-bar-phone-hidden">
-            <h6 class="top-phone mobile">8 800 200 5095</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script><!--<a class="custom-link mobile-callback-link" data-ix="callback-open-button" href="#">Перезвоните мне</a>-->
+          <h4 class="messenger-phone"><img class="messengers_icons" src="images/messengers_icons_small.png"></span> +7 987 604-58-40</h4>
+          <h6 class="top-phone mobile">8 800 200 5095</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script>
           </div>
         </div>
         <div class="w-clearfix w-hidden-medium w-hidden-small w-hidden-tiny top-bar-phone-wrapper">
-          <h6 class="top-phone">8 800 200 1599</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script><!--<a class="custom-link" data-ix="callback-open-button" href="#">Перезвоните мне</a>-->
+        <h4 class="messenger-phone"><img class="messengers_icons" src="images/messengers_icons_small.png"></span> +7 987 604-58-40</h4>
+        <h6 class="top-phone">8 800 200 1599</h6><script src="jsale/JS.php?call&form_type=button" type="text/javascript"></script><div class="free-call-annotation">Звонок по РФ бесплатный</div>
         </div>
-        <div class="w-nav w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny navbar-style hidden" data-animation="default" data-collapse="medium" data-contain="1" data-duration="400">
+        <div class="w-nav navbar-style" data-animation="default" data-collapse="medium" data-contain="1" data-duration="400">
           <div class="w-container menu-wrapper">
             <div class="w-nav-button menu-icon">
               <div class="w-icon-nav-menu"></div>
             </div>
-            <nav class="w-nav-menu nav-menu-block" role="navigation"><a class="w-nav-link nav-link" href="#About">Что это?</a><a class="w-nav-link nav-link" href="#apps">Приложения</a><a class="w-nav-link nav-link" href="#compat">Совместимость</a><a class="w-nav-link nav-link" href="#delivery">Оплата и доставка</a><a class="w-nav-link nav-link" href="#faq">Вопросы и ответы</a><a class="w-nav-link nav-link nav-buy" href="#final-offer">Купить со скидкой</a>
-            </nav>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
     <div class="w-container order-bg">
       <h1 class="h2">Оформление заказа</h1>
       <div class="order-wrapper">
-		<script type="text/javascript" src="jsale/JS.php?template=2&product=gc2.0+&form_type=form&upsell=1&upsell=page"></script>
+		<script type="text/javascript" src="jsale/JS.php?product=gc2.0+&form_type=form&upsell=1&upsell=page"></script>
       </div>
     </div>
   </div>
@@ -98,12 +98,13 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="js/jquery.cookie.js"></script>
-  <script type="text/javascript" src="js/utm_multi_vid.js"></script>
+  <script type="text/javascript" src="js/jquery.cookie.js"></script> 
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="js/utm_multi_vid.js"></script> 
   <script type="text/javascript" src="js/kartonochki.js"></script>
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
-
+    
     <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function (d, w, c) {

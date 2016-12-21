@@ -38,4 +38,3 @@
 [09-Sep-2016 22:02:42 Asia/Yekaterinburg] PHP Notice:  Undefined offset: 1 in /home/k/kartonocru/test/public_html/jsale/modules/M_DB.inc.php on line 523
 [09-Sep-2016 22:02:42 Asia/Yekaterinburg] PHP Notice:  Undefined offset: 1 in /home/k/kartonocru/test/public_html/jsale/modules/M_DB.inc.php on line 523
 [17-Sep-2016 20:35:02 Asia/Yekaterinburg] PHP Notice:  Undefined variable: order_sum in /home/k/kartonocru/dev/public_html/jsale/modules/C_SMS.inc.php on line 14
-[09-Dec-2016 12:44:51 Asia/Yekaterinburg] PHP Notice:  Undefined index: pvz_address in /home/k/kartonocru/dev/public_html/jsale/design/adminOrderEdit.tpl.php on line 307

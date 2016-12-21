@@ -1,12 +1,15 @@
-<form action="<?= $config['sitelink'] . $config['dir'] ?>relay.php" method="post" class="jSaleForm" id="jsale_form_<?= $id_form ?>">
-	<h6 style="background: #ff0;">Это шаблон #2. Можете изменять форму как угодно</h6>
+<form action="<?= $config['sitelink'] . $config['dir'] ?>relay.php" method="post" class="jSaleForm"
+	  id="jsale_form_<?= $id_form ?>"
+	  xmlns="http://www.w3.org/1999/html">
 	<? if (isset($message) && is_string($message)): ?>
 	<h6 class="jSaleMessage">
 		<?= $message; ?>
 	</h6>
 	<? else: ?>
 	<h6>
-		Оформление заказа: <?= $product['title']; ?>
+		Заполните эту фомру,<br/>
+		<span style="color:#f60">чтобы получить Google Cardboard 2.0+<br/>
+		и 2 подарка с общей выгодой 730р.</span>
 	</h6>
 	<? endif; ?>
 	
@@ -55,11 +58,11 @@
 	</p>
 	<? endif; ?>
 	<? if ($config['form']['name']['enabled'] == true): ?>
-	<p class="float">
+	<p class="float form-center">
 		<label><?= $config['form']['name']['label'];?><? if ($config['form']['name']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label><br>
 		<input type="text" name="order_name" value="<?= (isset($name)) ? $name : '';?>" placeholder="<?= $config['form']['name']['example'] ?>">
 		<? if (isset($message) && is_array($message) && in_array('name', $message)): ?>
-		<span class="warning"><?= $config['form']['name']['empty'] ?></span>
+			<span class="warning"><?= $config['form']['name']['empty'] ?></span>
 		<? endif; ?>
 	</p>
 	<? endif; ?>
@@ -73,7 +76,7 @@
 	</p>
 	<? endif; ?>
 	<? if ($config['form']['email']['enabled'] == true): ?>
-	<p class="float">
+	<p class="float form-center">
 		<label><?= $config['form']['email']['label'];?><? if ($config['form']['email']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label><br>
 		<input type="text" name="order_email" value="<?= (isset($email)) ? $email : '';?>" placeholder="<?= $config['form']['email']['example'] ?>">
 		<? if (isset($message) && is_array($message) && in_array('email', $message)): ?>
@@ -82,7 +85,7 @@
 	</p>
 	<? endif; ?>
 	<? if ($config['form']['phone']['enabled'] == true): ?>
-	<p class="float">
+	<p class="float form-center">
 		<label><?= $config['form']['phone']['label'];?><? if ($config['form']['phone']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label><br>
 		<input type="text" name="order_phone" value="<?= (isset($phone)) ? $phone : '';?>" class="jSalePhone" placeholder="<?= (isset($country) && isset($config['form']['country']['select'][$country])) ? $config['form']['country']['select'][$country][2] : $config['form']['phone']['example']; ?>">
 		<? if (isset($message) && is_array($message) && in_array('phone', $message)): ?>
@@ -128,164 +131,22 @@
 		<? endif; ?>
 	</p>
 	<? endif; ?>
-	<? if ($config['form']['city']['enabled'] == true): ?>
-	<p class="float">
-		<label><?= $config['form']['city']['label'];?><? if ($config['form']['city']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label><br>
-		<input type="text" name="order_city" value="<?= (isset($city)) ? $city : '';?>" placeholder="<?= $config['form']['city']['example'] ?>">
-		<? if (isset($message) && is_array($message) && in_array('city', $message)): ?>
-		<span class="warning"><?= $config['form']['city']['empty'] ?></span>
-		<? endif; ?>
-	</p>
 	<? endif; ?>
-	<? if ($config['form']['address']['enabled'] == true): ?>
-	<p>
-		<label><?= $config['form']['address']['label'];?><? if ($config['form']['address']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label><br>
-		<textarea name="order_address" placeholder="<?= $config['form']['address']['example'] ?>"><?= (isset($address)) ? $address : '';?></textarea>
-		<? if (isset($message) && is_array($message) && in_array('address', $message)): ?>
-		<span class="warning"><?= $config['form']['address']['empty'] ?></span>
-		<? endif; ?>
-	</p>
-	<? endif; ?>
-	<? if ($config['form']['comment']['enabled'] == true): ?>
-	<p>
-		<label><?= $config['form']['comment']['label'];?><? if ($config['form']['comment']['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label><br>
-		<textarea name="order_comment" placeholder="<?= $config['form']['comment']['example'] ?>"><?= (isset($comment)) ? $comment : '';?></textarea>
-		<? if (isset($message) && is_array($message) && in_array('comment', $message)): ?>
-		<span class="warning"><?= $config['form']['comment']['empty'] ?></span>
-		<? endif; ?>
-	</p>
-	<? endif; ?>
-	<? if (count($config['payments']) > 1 || $config['deliveries_view'] == true): ?>
-		<p>
-		<label>Выбор метода оплаты:</label>
-		<select name="order_payment" onchange="show_payment_info_<?= $id_form ?>(this);">
-			<? foreach ($config['payments'] as $type => $payment): ?>
-			<? if ($payment['enabled'] == true): ?>
-			<option value="<?= $type ?>"<? if (isset($payment_type) && $type == $payment_type): ?> selected="selected"<? endif; ?>><?= $payment['title'] ?></option>
-			<? endif; ?>
-			<? endforeach; ?>
-		</select>
-		</p>
 
-		<div id="payment_info">
-		<? foreach ($config['payments'] as $type => $payment): ?>
-			<? if ($payment['enabled'] == true): ?>
-			<p class="<?= $type ?>"><?= $payment['info'] ?></p>
-			<? endif; ?>
-		<? endforeach; ?>
-		</div>
-		
-		<? if ($payment_type == 'yandex_eshop'): ?>
-		<p>
-			<label>Выбор метода оплаты:</label>
-			<select name="yandex_payment_type">
-				<? foreach ($config['payments']['yandex_eshop']['types'] as $type => $payment_title): ?>
-				<option value="<?= $type ?>" <?= (isset($yandex_payment_type) && $yandex_payment_type == $type) ? 'selected="selected"' : '' ?>><?= $payment_title ?></option>
-				<? endforeach; ?>
-			</select>
-		</p>
-		<? endif; ?>
-	<? else: ?>
-		<input type="hidden" name="order_payment" value="<? reset($config['payments']); echo key($config['payments']);?>">
-		<? if (key($config['payments']) == 'yandex_eshop'): ?>
-		<p>
-			<label>Выбор метода оплаты:</label>
-			<select name="yandex_payment_type">
-				<? foreach ($config['payments']['yandex_eshop']['types'] as $type => $payment_title): ?>
-				<option value="<?= $type ?>" <?= (isset($yandex_payment_type) && $yandex_payment_type == $type) ? 'selected="selected"' : '' ?>><?= $payment_title ?></option>
-				<? endforeach; ?>
-			</select>
-		</p>
-		<? endif; ?>
-	<? endif; ?>
-	<? if (count($config['deliveries']) > 1 || $config['deliveries_view'] == true): ?>
-		<p>
-		<label>Выбор способа доставки:</label>
-		<select name="order_delivery" onchange="show_delivery_info_<?= $id_form ?>(this);">
-			<? foreach ($config['deliveries'] as $type => $delivery): ?>
-			<? if ($delivery['enabled'] == true && isset($payment_type)): ?>
-			<? if ($config['payment2delivery']['enabled'] !== true || $config['payment2delivery']['enabled'] === true && !isset($config['payment2delivery'][$payment_type]) || $config['payment2delivery']['enabled'] === true && isset($config['payment2delivery'][$payment_type]) && in_array($type, $config['payment2delivery'][$payment_type])): ?>
-			<option value="<?= $type ?>"<? if (isset($delivery_type) && $type == $delivery_type): ?> selected="selected"<? endif; ?>><?= $delivery['title'] ?></option>
-			<? endif; ?>
-			<? endif; ?>
-			<? endforeach; ?>
-		</select>
-		</p>
-
-		<div id="delivery_info">
-		<? foreach ($config['deliveries'] as $type => $delivery): ?>
-			<? if ($delivery['enabled'] == true): ?>
-			<p class="<?= $type ?>"><?= $delivery['info'] ?></p>
-			<? endif; ?>
-		<? endforeach; ?>
-		</div>
-	<? else: ?>
-	<input type="hidden" name="order_delivery" value="<? reset($config['deliveries']); echo key($config['deliveries']);?>">
-	<? endif; ?>
-	
-	<!-- Дополнительные поля -->
-	<? if (isset($config['form']['add']) && is_array($config['form']['add'])): ?>
-	<? foreach ($config['form']['add'] as $add_name => $add): ?>
-		<? if (isset($add['enabled']) && $add['enabled'] === true): ?>
-		<p id="order_add_<?= $add_name ?>">
-			<? if ($add['type'] == 'select'): ?>
-			<label><?= $add['label'];?><? if ($add['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label><br>
-			<select name="order_<?= $add_name ?>" <?= (isset($add['cost'])) ? 'onchange="change_adds_' . $id_form . '()"' : '' ?>>
-				<? foreach ($add['select'] as $key => $value): ?>
-				<option value="<?= $key ?>"<? if (isset($$add_name) && $key == $$add_name): ?> selected="selected"<? endif; ?>><?= $value ?></option>
-				<? endforeach; ?>
-			</select>
-			<? elseif ($add['type'] == 'checkbox'): ?>
-			<label><?= $add['label'];?><? if ($add['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label>
-			<input type="checkbox" name="order_<?= $add_name ?>" value="<?= $add['checkbox'] ?>" <?= (isset($$add_name) && $add['checkbox'] == $$add_name) ? 'checked="checked"' : '' ?> <?= (isset($add['cost'])) ? 'onchange="change_adds_' . $id_form. '()"' : '' ?> />
-			<? else: ?>
-			<label><?= $add['label'];?><? if ($add['required'] == true): ?><span class="attention" title="Поле, обязательное к заполнению">*</span><? endif;?></label><br>
-			<input type="text" name="order_<?= $add_name ?>" value="<?= (isset($$add_name)) ? $$add_name : '';?>" <?= (isset($add['cost'])) ? 'onkeyup="change_adds_' . $id_form. '()"' : '' ?> placeholder="<?= $config['form']['add'][$add_name]['example'] ?>" />
-			<? endif; ?>
-
-			<? if (isset($message) && is_array($message) && in_array($add_name, $message)): ?>
-			<span class="warning"><?= (isset($config['form']['add'][$add_name]['empty'])) ? $config['form']['add'][$add_name]['empty'] : $config['form']['add']['empty'] ?></span>
-			<? endif; ?>
-		</p>
-		<? endif; ?>
-	<? endforeach; ?>
-	<? endif; ?>
-	<? endif; ?>
-	
-	<p>
-	<? if ($config['codes']['enabled'] === true): ?>
-		<label>Промо-код:</label>
-		<input type="text" name="order_code" value="<?= ($config['partner']['codes']['auto'] === true && isset($_COOKIE['jsale_ref']) && empty($code)) ? $_COOKIE['jsale_ref'] : $code ?>" class="jSaleCode">
-	<? else: ?>
-		<input type="hidden" name="order_code" value="<?= ($config['partner']['codes']['auto'] === true && isset($_COOKIE['jsale_ref']) && empty($code)) ? $_COOKIE['jsale_ref'] : $code ?>" class="jSaleCode">
-	<? endif; ?>
-	<? if (isset($discount) && $discount != 0): ?>
-		<span class="attention ">
-			Ваша скидка: <?= $discount;?> <?if ($config['discounts']['fixed'] === true):?><?= $config['currency'] ?><? else: ?>%<? endif; ?> Ваша цена: <span id="subtotal"><?= (isset($config['payments'][$payment_type]['rate'])) ? number_format($config['payments'][$payment_type]['rate'], 2, '.', '') * $order_sum : number_format($order_sum, 2, '.', '');?></span> <?= (isset($config['payments'][$payment_type]['currency'])) ? $config['payments'][$payment_type]['currency'] : $config['currency'] ?>
-		</span>
-	<? else: ?>
-		Итоговая сумма с учетом доставки: <span id="subtotal"><?= (isset($config['payments'][$payment_type]['rate'])) ? number_format($config['payments'][$payment_type]['rate'] * $order_sum, 2, '.', '') : $order_sum  ?></span> <?= (isset($config['payments'][$payment_type]['currency'])) ? $config['payments'][$payment_type]['currency'] : $config['currency'] ?>
-	<? endif; ?>
-	</p>
 	<p class="submit">
-		<? if ($product['qty_type'] == 'text'): ?>
-		<label>Введите количество:</label>
-		<?= ($config['product']['qty_buttons'] === true) ? '<button class="jSaleQtyBtn jSaleQtyMinus">-</button>' : ''?>
-		<input type="text" name="product_qty" value="<?= $product['qty']; ?>" class="jSaleQty">
-		<?= ($config['product']['qty_buttons'] === true) ? '<button class="jSaleQtyBtn jSaleQtyPlus">+</button>' : ''?>
-		<?= $product['unit']; ?>
-		<? else: ?>
-		<input type="hidden" name="product_qty" value="<?= $product['qty']; ?>" class="jSaleQty">
-		<? endif; ?>
+		<input type="submit" name="order_submit" value="Получить Google Cardboard 2.0" class="jSaleSubmit jSaleButton jSaleLarge" <?= (isset($disabled) && $disabled === true) ? 'disabled="disabled"' : '' ?>>
 
-		<input type="submit" name="order_submit" value="Отправить заказ" class="jSaleSubmit jSaleButton jSaleLarge" <?= (isset($disabled) && $disabled === true) ? 'disabled="disabled"' : '' ?>>
-
+		<input type="hidden" name="sum" value="<?= 730 ?>">
 		<input type="hidden" name="order_spam" value="<?= $antispam ?>">
 		<input type="hidden" name="order_nospam" value="">
 		<input type="hidden" name="hash" value="<?= $product['hash']; ?>">
 		<input type="hidden" name="utm" value="<?= (isset($product['utm'])) ? $product['utm'] : '' ?>">
 		<input type="hidden" name="source" value="<?= (isset($product['source'])) ? $product['source'] : '' ?>">
+		<input type="hidden" name="cookies" value=''>
+		<input type="hidden" name="product_qty" value="1">
+		<input type="hidden" name="city" value="1">
 
+		<input type="hidden" name="order_payment" value="email" />
 		<input type="hidden" name="product_id" value="<?= (isset($product['id_product'])) ? $product['id_product'] : '' ?>">
 		<input type="hidden" name="product_code" value="<?= $product['code']; ?>">
 		<input type="hidden" name="product_title" value="<?= $product['title']; ?>">
